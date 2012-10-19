@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B2DAEC77-1664-4C9B-8951-BCCDC92B09CE}</ProjectGuid>
+    <RootNamespace>util</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>NotSet</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>NotSet</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.21006.1</_ProjectFileVersion>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">c:\Program Files\vtk5.4.2\bin\include;$(ProjectDir)..\..\nifti;$(ProjectDir)..\..\util;$(ProjectDir)..\..\..\RAPID201;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">c:\Program Files\vtk5.4.2\bin\include;$(ProjectDir)..\..\nifti;$(ProjectDir)..\..\util;$(ProjectDir)..\..\..\RAPID201;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">c:\Program Files\vtk5.4.2\bin\include;$(ProjectDir)..\..\nifti;$(ProjectDir)..\..\util;$(ProjectDir)..\..\..\RAPID201;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">c:\Program Files\vtk5.4.2\bin\include;$(ProjectDir)..\..\nifti;$(ProjectDir)..\..\util;$(ProjectDir)..\..\..\RAPID201;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\..\..\util;$(ProjectDir)\..\..\..\..\..\RAPID201;$(ProjectDir)\..\..\..\nifti;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\..\..\util;$(ProjectDir)\..\..\..\..\..\RAPID201;$(ProjectDir)\..\..\..\nifti;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\..\..\util;$(ProjectDir)\..\..\..\..\..\RAPID201;$(ProjectDir)\..\..\..\nifti;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\..\..\util;$(ProjectDir)\..\..\..\..\..\RAPID201;$(ProjectDir)\..\..\..\nifti;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\nifti\nifti.vcxproj">
+      <Project>{0a236a7b-a072-4964-ab01-aed44d6b6ab7}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\util\dcdf.cpp" />
+    <ClCompile Include="..\..\..\util\DTIFilter.cpp" />
+    <ClCompile Include="..\..\..\util\DTIFilterAlgorithm.cpp" />
+    <ClCompile Include="..\..\..\util\DTIFilterPathwayScalar.cpp" />
+    <ClCompile Include="..\..\..\util\DTIFilterTree.cpp" />
+    <ClCompile Include="..\..\..\util\DTIFilterVOI.cpp" />
+    <ClCompile Include="..\..\..\util\DTIMath.cpp" />
+    <ClCompile Include="..\..\..\util\DTIPathDistanceMatrix.cpp" />
+    <ClCompile Include="..\..\..\util\DTIPathway.cpp" />
+    <ClCompile Include="..\..\..\util\DTIPathwayDatabase.cpp" />
+    <ClCompile Include="..\..\..\util\DTIPathwayFactory.cpp" />
+    <ClCompile Include="..\..\..\util\DTIPathwayInterface.cpp" />
+    <ClCompile Include="..\..\..\util\DTIPathwayIntersectionVolume.cpp" />
+    <ClCompile Include="..\..\..\util\DTIPathwayIO.cpp" />
+    <ClCompile Include="..\..\..\util\DTIPathwaySelection.cpp" />
+    <ClCompile Include="..\..\..\util\DTIQueryProcessor.cpp" />
+    <ClCompile Include="..\..\..\util\DTIRandomSeedGenerator.cpp" />
+    <ClCompile Include="..\..\..\util\DTIRandomSeedGeneratorMask.cpp" />
+    <ClCompile Include="..\..\..\util\DTIStats.cpp" />
+    <ClCompile Include="..\..\..\util\DTITrackingData.cpp" />
+    <ClCompile Include="..\..\..\util\DTITractParamsFile.cpp" />
+    <ClCompile Include="..\..\..\util\DTIVolumeIO.cpp" />
+    <ClCompile Include="..\..\..\util\FunctionNodes.cpp" />
+    <ClCompile Include="..\..\..\util\FunctionParser.cpp" />
+    <ClCompile Include="..\..\..\util\PathwayGroup.cpp" />
+    <ClCompile Include="..\..\..\util\PDBHelper.cpp" />
+    <ClCompile Include="..\..\..\util\SubjectData.cpp" />
+    <ClCompile Include="..\..\..\util\ui_utils.cpp" />
+    <ClCompile Include="..\..\..\util\VOIManager.cpp" />
+    <ClCompile Include="..\..\..\util\Wm4\Wm4BSplineCurveFit.cpp" />
+    <ClCompile Include="..\..\..\util\Wm4\Wm4BSplineFitBasis.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\util\Box-Muller.h" />
+    <ClInclude Include="..\..\..\util\ComputeListener.h" />
+    <ClInclude Include="..\..\..\util\dcdf.h" />
+    <ClInclude Include="..\..\..\util\DTIConTrackPDF.h" />
+    <ClInclude Include="..\..\..\util\DTIFilter.h" />
+    <ClInclude Include="..\..\..\util\DTIFilterAlgorithm.h" />
+    <ClInclude Include="..\..\..\util\DTIFilterPathwayScalar.h" />
+    <ClInclude Include="..\..\..\util\DTIFilterTree.h" />
+    <ClInclude Include="..\..\..\util\DTIFilterVOI.h" />
+    <ClInclude Include="..\..\..\util\DTIMath.h" />
+    <ClInclude Include="..\..\..\util\DTIPathDistanceMatrix.h" />
+    <ClInclude Include="..\..\..\util\DTIPathway.h" />
+    <ClInclude Include="..\..\..\util\DTIPathwayAlgorithmHeader.h" />
+    <ClInclude Include="..\..\..\util\DTIPathwayDatabase.h" />
+    <ClInclude Include="..\..\..\util\DTIPathwayFactory.h" />
+    <ClInclude Include="..\..\..\util\DTIPathwayFactoryInterface.h" />
+    <ClInclude Include="..\..\..\util\DTIPathwayInterface.h" />
+    <ClInclude Include="..\..\..\util\DTIPathwayIntersectionVolume.h" />
+    <ClInclude Include="..\..\..\util\DTIPathwayIO.h" />
+    <ClInclude Include="..\..\..\util\DTIPathwaySelection.h" />
+    <ClInclude Include="..\..\..\util\DTIPathwayStatisticHeader.h" />
+    <ClInclude Include="..\..\..\util\DTIQueryProcessor.h" />
+    <ClInclude Include="..\..\..\util\DTIRandomSeedGenerator.h" />
+    <ClInclude Include="..\..\..\util\DTIRandomSeedGeneratorMask.h" />
+    <ClInclude Include="..\..\..\util\DTISeedGenerator.h" />
+    <ClInclude Include="..\..\..\util\DTIStats.h" />
+    <ClInclude Include="..\..\..\util\DTITrackingData.h" />
+    <ClInclude Include="..\..\..\util\DTITractParamsFile.h" />
+    <ClInclude Include="..\..\..\util\DTIVolume.h" />
+    <ClInclude Include="..\..\..\util\DTIVolumeIO.h" />
+    <ClInclude Include="..\..\..\util\FunctionNodes.h" />
+    <ClInclude Include="..\..\..\util\FunctionParser.h" />
+    <ClInclude Include="..\..\..\util\io_utils.h" />
+    <ClInclude Include="..\..\..\util\PathwayGroup.h" />
+    <ClInclude Include="..\..\..\util\PDBHelper.h" />
+    <ClInclude Include="..\..\..\util\random.h" />
+    <ClInclude Include="..\..\..\util\SubjectData.h" />
+    <ClInclude Include="..\..\..\util\tokens.h" />
+    <ClInclude Include="..\..\..\util\typedefs.h" />
+    <ClInclude Include="..\..\..\util\typedefs_array.h" />
+    <ClInclude Include="..\..\..\util\typedefs_property.h" />
+    <ClInclude Include="..\..\..\util\ui_utils.h" />
+    <ClInclude Include="..\..\..\util\VOIManager.h" />
+    <ClInclude Include="..\..\..\util\Wm4\Wm4BandedMatrix.h" />
+    <ClInclude Include="..\..\..\util\Wm4\Wm4BSplineCurveFit.h" />
+    <ClInclude Include="..\..\..\util\Wm4\Wm4BSplineFitBasis.h" />
+    <ClInclude Include="..\..\..\util\Wm4\Wm4Utils.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\util\Wm4\Wm4BandedMatrix.inl" />
+    <None Include="..\..\..\util\Wm4\Wm4Utils.inl" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

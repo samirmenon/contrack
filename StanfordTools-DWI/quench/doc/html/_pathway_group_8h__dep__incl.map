@@ -1,0 +1,23 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$_p_d_b_helper_8cpp.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/util/PDBHelper.cpp" alt="" coords="481,83,985,112"/>
+<area shape="rect" id="node6" href="$_p_d_b_helper_8h.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/util/PDBHelper.h" alt="" coords="2712,83,3203,112"/>
+<area shape="rect" id="node8" href="$q_pathway_viz_8cpp.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qvtk/qPathwayViz.cpp" alt="" coords="1885,160,2453,189"/>
+<area shape="rect" id="node11" href="$q_pathway_viz_8h.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qvtk/qPathwayViz.h" alt="" coords="1205,160,1760,189"/>
+<area shape="rect" id="node13" href="$vtk_interactor_style_quench_8cpp.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qvtk/vtkInteractorStyleQuench.cpp" alt="" coords="5,315,643,344"/>
+<area shape="rect" id="node16" href="$_quench_8cpp.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qwx/Quench.cpp" alt="" coords="4789,315,5325,344"/>
+<area shape="rect" id="node21" href="$_visibility_panel_8cpp.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qvtk/VisibilityPanel.cpp" alt="" coords="3245,160,3819,189"/>
+<area shape="rect" id="node23" href="$_color_map_panel_8cpp.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qwx/ColorMapPanel.cpp" alt="" coords="3843,160,4421,189"/>
+<area shape="rect" id="node28" href="$_history_8h.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qwx/History.h" alt="" coords="2603,160,3120,189"/>
+<area shape="rect" id="node31" href="$_quench_8h.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qwx/Quench.h" alt="" coords="2365,237,2888,267"/>
+<area shape="rect" id="node53" href="$_stats_checkbox_array_8cpp.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qwx/StatsCheckboxArray.cpp" alt="" coords="4469,160,5080,189"/>
+<area shape="rect" id="node55" href="$_stats_panel_8h.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qwx/StatsPanel.h" alt="" coords="1732,237,2273,267"/>
+<area shape="rect" id="node59" href="$_pathway_group_8cpp.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/util/PathwayGroup.cpp" alt="" coords="5155,83,5680,112"/>
+<area shape="rect" id="node26" href="$_history_8cpp.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qwx/History.cpp" alt="" coords="4232,315,4765,344"/>
+<area shape="rect" id="node19" href="$_scene_window_8cpp.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qwx/SceneWindow.cpp" alt="" coords="1135,237,1708,267"/>
+<area shape="rect" id="node33" href="$_overlay_8cpp.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qvtk/Overlay.cpp" alt="" coords="3651,315,4184,344"/>
+<area shape="rect" id="node36" href="$q_volume_viz_8cpp.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qvtk/qVolumeViz.cpp" alt="" coords="1269,315,1832,344"/>
+<area shape="rect" id="node41" href="$_overlay_item_8cpp.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qwx/OverlayItem.cpp" alt="" coords="1880,315,2440,344"/>
+<area shape="rect" id="node43" href="$_overlay_panel_8cpp.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qwx/OverlayPanel.cpp" alt="" coords="2464,315,3032,344"/>
+<area shape="rect" id="node47" href="$_stats_panel_8cpp.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qwx/StatsPanel.cpp" alt="" coords="691,315,1245,344"/>
+<area shape="rect" id="node49" href="$_v_o_i_panel_8cpp.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qwx/VOIPanel.cpp" alt="" coords="3080,315,3627,344"/>
+</map>

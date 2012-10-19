@@ -1,0 +1,33 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$class_command.html" title="Command" alt="" coords="1569,593,1649,623"/>
+<area shape="rect" id="node4" href="$class_quench.html" title="The main app for Quench." alt="" coords="1403,464,1469,493"/>
+<area shape="rect" id="node6" href="$class_i_event_listener.html" title="IEventListener is base interface for all listener classes." alt="" coords="471,204,572,233"/>
+<area shape="rect" id="node8" href="$class_overlay_panel.html" title="OverlayPanel" alt="" coords="820,359,919,388"/>
+<area shape="rect" id="node21" href="$class_scene_window.html" title="SceneWindow" alt="" coords="817,267,921,296"/>
+<area shape="rect" id="node31" href="$classq_v_o_i_viz.html" title="This class contains the list of 3d vtk based VOI." alt="" coords="835,1027,904,1056"/>
+<area shape="rect" id="node69" href="$class_stats_panel.html" title="the panel displayed in the refine selection dialog, handles stats based filtering..." alt="" coords="1140,163,1225,192"/>
+<area shape="rect" id="node73" href="$class_v_o_i_panel.html" title="This panel is displayed in the refine selection dialog." alt="" coords="831,61,908,91"/>
+<area shape="rect" id="node10" href="$class_i_event_source.html" title="IEventSource is the base interface for all event generating classes." alt="" coords="132,453,231,483"/>
+<area shape="rect" id="node13" href="$class_range_slider.html" title="A generic slider class which has a range." alt="" coords="476,376,567,405"/>
+<area shape="rect" id="node16" href="$class_color_map_panel.html" title="ColorMapPanel" alt="" coords="656,447,765,476"/>
+<area shape="rect" id="node28" href="$classvtk_interactor_style_quench.html" title="Main class to handle interaction with the vtk renderer." alt="" coords="1100,672,1265,701"/>
+<area shape="rect" id="node42" href="$classq_volume_viz.html" title="This class handles interaction with the current background nifti image." alt="" coords="665,680,756,709"/>
+<area shape="rect" id="node47" href="$classq_pathway_viz.html" title="This class deals in storing and coloring fibers in 3d vtk format." alt="" coords="820,931,919,960"/>
+<area shape="rect" id="node52" href="$class_visibility_panel.html" title="Array of fibergroups which are displayed on the screen." alt="" coords="469,1048,573,1077"/>
+<area shape="rect" id="node77" href="$class_multi_value_spinner.html" title="A generic class to handle mulitple values associated with a spinner, current 3." alt="" coords="459,9,584,39"/>
+<area shape="rect" id="node80" href="$class_stats_checkbox_array.html" title="This class represents the graph and buttons displayed in the refine selection panel..." alt="" coords="799,475,940,504"/>
+<area shape="rect" id="node19" href="$class_subject_data.html" title="This class stores the nifti images associated with a subject." alt="" coords="1136,464,1229,493"/>
+<area shape="rect" id="node23" href="$classwx_v_t_k_render_window_interactor.html" title="wxVTKRenderWindowInteractor" alt="" coords="420,264,623,293"/>
+<area shape="rect" id="node26" href="$class_command_manager.html" title="CommandManager" alt="" coords="1117,517,1248,547"/>
+<area shape="rect" id="node35" href="$classq_scale_tool.html" title="Specialization of the manipulation tool to deal with scaling." alt="" coords="479,1155,564,1184"/>
+<area shape="rect" id="node37" href="$classq_manipulation_tool.html" title="A multi axis manipulation tool." alt="" coords="119,1196,244,1225"/>
+<area shape="rect" id="node39" href="$classq_move_tool.html" title="Specialization of the manipulation tool to deal with translation." alt="" coords="480,1208,563,1237"/>
+<area shape="rect" id="node45" href="$classq_gesture_interactor.html" title="vtk based class to draw user gestures" alt="" coords="805,629,933,659"/>
+<area shape="rect" id="node50" href="$class_d_t_i_pathway_assignment.html" title="Stores the mapping of fibers to fiber groups." alt="" coords="441,817,601,847"/>
+<area shape="rect" id="node66" href="$class_p_d_b_helper.html" title="This class acts as a wrapper around DTIPathwayDatabase." alt="" coords="977,781,1063,811"/>
+<area shape="rect" id="node55" href="$class_color_button.html" title="A vtk gui element to represent the color and visibility of a fiber group." alt="" coords="136,1133,227,1163"/>
+<area shape="rect" id="node57" href="$class_button.html" title="A vtk based button class consists of actor with text and border." alt="" coords="7,1105,65,1135"/>
+<area shape="rect" id="node59" href="$class_texture_button.html" title="Class representing a textured vtk button." alt="" coords="131,1080,232,1109"/>
+<area shape="rect" id="node62" href="$class_mode_selector.html" title="A panel with a group of buttons." alt="" coords="471,1101,572,1131"/>
+<area shape="rect" id="node64" href="$class_pathway_group_array.html" title="The class contains an array of &#160;&#39;s." alt="" coords="452,549,591,579"/>
+</map>

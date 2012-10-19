@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$class_i_event_source.html" title="IEventSource is the base interface for all event generating classes." alt="" coords="5,5,104,35"/>
+<area shape="rect" id="node4" href="$class_d_t_i_pathway_assignment.html" title="Stores the mapping of fibers to fiber groups." alt="" coords="128,5,288,35"/>
+<area shape="rect" id="node6" href="$class_pathway_group_array.html" title="The class contains an array of &#160;&#39;s." alt="" coords="312,5,451,35"/>
+</map>

@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{91048d78-aa60-4543-b1e3-a35cc8232633}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{92a75dc6-b90a-4018-be3f-502c2d057ed5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\vtk">
+      <UniqueIdentifier>{c2eee178-189c-45a6-a72c-9385d01e7eb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\wx">
+      <UniqueIdentifier>{ab8959b7-e39c-45d7-bd99-49535902ee5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\wx">
+      <UniqueIdentifier>{16bf0ee7-e85a-4e34-8335-998299e2ec26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\vtk">
+      <UniqueIdentifier>{33adfb62-ad0f-409e-8aa6-c7223811085a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\qvtk\vtkVOI.h">
+      <Filter>Header Files\vtk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qvtk\Button.h">
+      <Filter>Header Files\vtk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qvtk\ModeSelector.h">
+      <Filter>Header Files\vtk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qvtk\Overlay.h">
+      <Filter>Header Files\vtk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qvtk\qGestureInteractor.h">
+      <Filter>Header Files\vtk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qvtk\qMoveTool.h">
+      <Filter>Header Files\vtk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qvtk\qPathwayViz.h">
+      <Filter>Header Files\vtk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qvtk\qVOIViz.h">
+      <Filter>Header Files\vtk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qvtk\qVolumeViz.h">
+      <Filter>Header Files\vtk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qvtk\VisibilityPanel.h">
+      <Filter>Header Files\vtk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qvtk\vtkFilledCaptionActor2D.h">
+      <Filter>Header Files\vtk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qvtk\vtkInteractorStyleQuench.h">
+      <Filter>Header Files\vtk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qwx\wxVTKRenderWindowInteractor.h">
+      <Filter>Header Files\wx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qwx\ColorMapPanel.h">
+      <Filter>Header Files\wx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qwx\History.h">
+      <Filter>Header Files\wx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qwx\NButtonChoiceDialog.h">
+      <Filter>Header Files\wx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qwx\OverlayItem.h">
+      <Filter>Header Files\wx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qwx\OverlayPanel.h">
+      <Filter>Header Files\wx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qwx\Quench.h">
+      <Filter>Header Files\wx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qwx\RangeSlider.h">
+      <Filter>Header Files\wx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qwx\SceneWindow.h">
+      <Filter>Header Files\wx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qwx\StatsCheckboxArray.h">
+      <Filter>Header Files\wx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qwx\StatsPanel.h">
+      <Filter>Header Files\wx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qwx\typedefs_event.h">
+      <Filter>Header Files\wx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qwx\typedefs_quench.h">
+      <Filter>Header Files\wx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qwx\VOIPanel.h">
+      <Filter>Header Files\wx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qwx\Network.h">
+      <Filter>Header Files\wx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qwx\ImagePreview.h">
+      <Filter>Header Files\wx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qwx\PerPointColor.h">
+      <Filter>Header Files\wx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\qvtk\Mesh.h">
+      <Filter>Header Files\vtk</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\qvtk\Button.cpp">
+      <Filter>Source Files\vtk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\qvtk\ModeSelector.cpp">
+      <Filter>Source Files\vtk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\qvtk\Overlay.cpp">
+      <Filter>Source Files\vtk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\qvtk\qGestureInteractor.cpp">
+      <Filter>Source Files\vtk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\qvtk\qMoveTool.cpp">
+      <Filter>Source Files\vtk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\qvtk\qPathwayViz.cpp">
+      <Filter>Source Files\vtk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\qvtk\qVOIViz.cpp">
+      <Filter>Source Files\vtk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\qvtk\qVolumeViz.cpp">
+      <Filter>Source Files\vtk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\qvtk\VisibilityPanel.cpp">
+      <Filter>Source Files\vtk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\qvtk\vtkFilledCaptionActor2D.cpp">
+      <Filter>Source Files\vtk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\qvtk\vtkInteractorStyleQuench.cpp">
+      <Filter>Source Files\vtk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\qvtk\vtkVOI.cpp">
+      <Filter>Source Files\vtk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\qwx\ColorMapPanel.cpp">
+      <Filter>Source Files\wx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\qwx\History.cpp">
+      <Filter>Source Files\wx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\qwx\OverlayItem.cpp">
+      <Filter>Source Files\wx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\qwx\OverlayPanel.cpp">
+      <Filter>Source Files\wx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\qwx\Quench.cpp">
+      <Filter>Source Files\wx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\qwx\RangeSlider.cpp">
+      <Filter>Source Files\wx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\qwx\SceneWindow.cpp">
+      <Filter>Source Files\wx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\qwx\StatsCheckboxArray.cpp">
+      <Filter>Source Files\wx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\qwx\StatsPanel.cpp">
+      <Filter>Source Files\wx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\qwx\VOIPanel.cpp">
+      <Filter>Source Files\wx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\qwx\wxVTKRenderWindowInteractor.cpp">
+      <Filter>Source Files\wx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\qwx\Network.cpp">
+      <Filter>Source Files\wx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\qwx\ImagePreview.cpp">
+      <Filter>Source Files\wx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\qwx\PerPointColor.cpp">
+      <Filter>Source Files\wx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\qvtk\Mesh.cpp">
+      <Filter>Source Files\vtk</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

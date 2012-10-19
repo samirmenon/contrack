@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$class_button.html" title="A vtk based button class consists of actor with text and border." alt="" coords="7,32,65,61"/>
+<area shape="rect" id="node3" href="$class_color_button.html" title="A vtk gui element to represent the color and visibility of a fiber group." alt="" coords="121,5,212,35"/>
+<area shape="rect" id="node5" href="$class_texture_button.html" title="Class representing a textured vtk button." alt="" coords="116,59,217,88"/>
+</map>

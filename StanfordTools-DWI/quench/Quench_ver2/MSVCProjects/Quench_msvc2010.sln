@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nifti", "nifti\nifti.vcxproj", "{0A236A7B-A072-4964-AB01-AED44D6B6AB7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "util", "util\util.vcxproj", "{B2DAEC77-1664-4C9B-8951-BCCDC92B09CE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Quench", "quench\Quench.vcxproj", "{F5B82827-92AF-4E41-A05A-7FA396423432}"
+	ProjectSection(ProjectDependencies) = postProject
+		{254BEC38-1FF6-E7D5-D975-CE6B0FADE8D8} = {254BEC38-1FF6-E7D5-D975-CE6B0FADE8D8}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RAPID", "..\RAPID201\MSVC_Compile\RAPID.vcxproj", "{254BEC38-1FF6-E7D5-D975-CE6B0FADE8D8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0A236A7B-A072-4964-AB01-AED44D6B6AB7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0A236A7B-A072-4964-AB01-AED44D6B6AB7}.Debug|Win32.Build.0 = Debug|Win32
+		{0A236A7B-A072-4964-AB01-AED44D6B6AB7}.Release|Win32.ActiveCfg = Release|Win32
+		{0A236A7B-A072-4964-AB01-AED44D6B6AB7}.Release|Win32.Build.0 = Release|Win32
+		{B2DAEC77-1664-4C9B-8951-BCCDC92B09CE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B2DAEC77-1664-4C9B-8951-BCCDC92B09CE}.Debug|Win32.Build.0 = Debug|Win32
+		{B2DAEC77-1664-4C9B-8951-BCCDC92B09CE}.Release|Win32.ActiveCfg = Release|Win32
+		{B2DAEC77-1664-4C9B-8951-BCCDC92B09CE}.Release|Win32.Build.0 = Release|Win32
+		{F5B82827-92AF-4E41-A05A-7FA396423432}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F5B82827-92AF-4E41-A05A-7FA396423432}.Debug|Win32.Build.0 = Debug|Win32
+		{F5B82827-92AF-4E41-A05A-7FA396423432}.Release|Win32.ActiveCfg = Release|Win32
+		{F5B82827-92AF-4E41-A05A-7FA396423432}.Release|Win32.Build.0 = Release|Win32
+		{254BEC38-1FF6-E7D5-D975-CE6B0FADE8D8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{254BEC38-1FF6-E7D5-D975-CE6B0FADE8D8}.Debug|Win32.Build.0 = Debug|Win32
+		{254BEC38-1FF6-E7D5-D975-CE6B0FADE8D8}.Release|Win32.ActiveCfg = Release|Win32
+		{254BEC38-1FF6-E7D5-D975-CE6B0FADE8D8}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

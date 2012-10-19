@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$class_i_event_source.html" title="IEventSource is the base interface for all event generating classes." alt="" coords="5,85,104,115"/>
+<area shape="rect" id="node4" href="$class_color_button.html" title="A vtk gui element to represent the color and visibility of a fiber group." alt="" coords="128,85,219,115"/>
+<area shape="rect" id="node6" href="$class_button.html" title="A vtk based button class consists of actor with text and border." alt="" coords="213,5,272,35"/>
+<area shape="rect" id="node8" href="$class_texture_button.html" title="Class representing a textured vtk button." alt="" coords="243,85,344,115"/>
+</map>

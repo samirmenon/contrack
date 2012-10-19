@@ -1,0 +1,25 @@
+<map id="G" name="G">
+<area shape="rect" id="node5" href="$q_pathway_viz_8h.html" title="qPathwayViz.h" alt="" coords="417,83,527,112"/>
+<area shape="rect" id="node41" href="$_scene_window_8h.html" title="SceneWindow.h" alt="" coords="1009,83,1124,112"/>
+<area shape="rect" id="node71" href="$vtk_interactor_style_quench_8h.html" title="vtkInteractorStyleQuench.h" alt="" coords="1508,83,1687,112"/>
+<area shape="rect" id="node80" href="$cursor__intersect__add_8h.html" title="icons/cursor_intersect_add.h" alt="" coords="2449,83,2639,112"/>
+<area shape="rect" id="node82" href="$cursor__intersect__add__mask_8h.html" title="icons/cursor_intersect_add_mask.h" alt="" coords="2663,83,2889,112"/>
+<area shape="rect" id="node84" href="$cursor__intersect__remove_8h.html" title="icons/cursor_intersect_remove.h" alt="" coords="2913,83,3121,112"/>
+<area shape="rect" id="node86" href="$cursor__intersect__remove__mask_8h.html" title="icons/cursor_intersect_remove_mask.h" alt="" coords="3145,83,3393,112"/>
+<area shape="rect" id="node88" href="$cursor__intersect__intersect_8h.html" title="icons/cursor_intersect_intersect.h" alt="" coords="3417,83,3636,112"/>
+<area shape="rect" id="node90" href="$cursor__intersect__intersect__mask_8h.html" title="icons/cursor_intersect_intersect_mask.h" alt="" coords="3660,83,3916,112"/>
+<area shape="rect" id="node92" href="$cursor__touch__add_8h.html" title="icons/cursor_touch_add.h" alt="" coords="3940,83,4111,112"/>
+<area shape="rect" id="node94" href="$cursor__touch__add__mask_8h.html" title="icons/cursor_touch_add_mask.h" alt="" coords="4135,83,4345,112"/>
+<area shape="rect" id="node96" href="$cursor__touch__remove_8h.html" title="icons/cursor_touch_remove.h" alt="" coords="4369,83,4559,112"/>
+<area shape="rect" id="node98" href="$cursor__touch__remove__mask_8h.html" title="icons/cursor_touch_remove_mask.h" alt="" coords="4583,83,4812,112"/>
+<area shape="rect" id="node100" href="$cursor__touch__intersect_8h.html" title="icons/cursor_touch_intersect.h" alt="" coords="4836,83,5036,112"/>
+<area shape="rect" id="node102" href="$cursor__touch__intersect__mask_8h.html" title="icons/cursor_touch_intersect_mask.h" alt="" coords="5060,83,5297,112"/>
+<area shape="rect" id="node104" href="$cursor__rotate_8h.html" title="icons/cursor_rotate.h" alt="" coords="5321,83,5465,112"/>
+<area shape="rect" id="node106" href="$cursor__rotate__mask_8h.html" title="icons/cursor_rotate_mask.h" alt="" coords="5489,83,5671,112"/>
+<area shape="rect" id="node7" href="$typedefs__quench_8h.html" title="typedefs_quench.h" alt="" coords="895,160,1025,189"/>
+<area shape="rect" id="node23" href="$_subject_data_8h.html" title="SubjectData.h" alt="" coords="469,160,573,189"/>
+<area shape="rect" id="node29" href="$_p_d_b_helper_8h.html" title="PDBHelper.h" alt="" coords="280,160,376,189"/>
+<area shape="rect" id="node32" href="$_pathway_group_8h.html" title="PathwayGroup.h" alt="" coords="184,237,301,267"/>
+<area shape="rect" id="node21" href="$typedefs__event_8h.html" title="typedefs_event.h" alt="" coords="901,237,1019,267"/>
+<area shape="rect" id="node43" href="$wx_v_t_k_render_window_interactor_8h.html" title="wxVTKRenderWindowInteractor.h" alt="" coords="1308,160,1521,189"/>
+</map>

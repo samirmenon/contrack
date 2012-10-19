@@ -1,0 +1,16 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_color_map_panel.html" title="ColorMapPanel" alt="" coords="181,5,291,35"/>
+<area shape="rect" id="node5" href="$class_multi_value_spinner.html" title="A generic class to handle mulitple values associated with a spinner, current 3." alt="" coords="173,59,299,88"/>
+<area shape="rect" id="node7" href="$class_network.html" title="Network" alt="" coords="201,112,271,141"/>
+<area shape="rect" id="node9" href="$class_overlay_item.html" title="OverlayItem" alt="" coords="191,165,281,195"/>
+<area shape="rect" id="node11" href="$class_overlay_panel.html" title="OverlayPanel" alt="" coords="187,219,285,248"/>
+<area shape="rect" id="node13" href="$classq_pathway_viz.html" title="This class deals in storing and coloring fibers in 3d vtk format." alt="" coords="187,272,285,301"/>
+<area shape="rect" id="node15" href="$classq_v_o_i_viz.html" title="This class contains the list of 3d vtk based VOI." alt="" coords="201,325,271,355"/>
+<area shape="rect" id="node17" href="$classq_volume_viz.html" title="This class handles interaction with the current background nifti image." alt="" coords="191,379,281,408"/>
+<area shape="rect" id="node19" href="$class_range_slider.html" title="A generic slider class which has a range." alt="" coords="191,432,281,461"/>
+<area shape="rect" id="node21" href="$class_stats_checkbox_array.html" title="This class represents the graph and buttons displayed in the refine selection panel..." alt="" coords="165,485,307,515"/>
+<area shape="rect" id="node23" href="$class_stats_panel.html" title="the panel displayed in the refine selection dialog, handles stats based filtering..." alt="" coords="193,539,279,568"/>
+<area shape="rect" id="node25" href="$class_visibility_panel.html" title="Array of fibergroups which are displayed on the screen." alt="" coords="184,592,288,621"/>
+<area shape="rect" id="node27" href="$class_v_o_i_panel.html" title="This panel is displayed in the refine selection dialog." alt="" coords="197,645,275,675"/>
+<area shape="rect" id="node29" href="$classvtk_interactor_style_quench.html" title="Main class to handle interaction with the vtk renderer." alt="" coords="153,699,319,728"/>
+</map>

@@ -1,0 +1,21 @@
+<map id="G" name="G">
+<area shape="rect" id="node6" href="$typedefs__quench_8h.html" title="typedefs_quench.h" alt="" coords="1499,315,1629,344"/>
+<area shape="rect" id="node29" href="$vtk_v_o_i_8h.html" title="vtkVOI.h" alt="" coords="1025,83,1095,112"/>
+<area shape="rect" id="node41" href="$_scene_window_8h.html" title="SceneWindow.h" alt="" coords="360,83,475,112"/>
+<area shape="rect" id="node43" href="$wx_v_t_k_render_window_interactor_8h.html" title="wxVTKRenderWindowInteractor.h" alt="" coords="173,160,387,190"/>
+<area shape="rect" id="node56" href="$q_volume_viz_8h.html" title="qVolumeViz.h" alt="" coords="2013,160,2115,190"/>
+<area shape="rect" id="node65" href="$q_pathway_viz_8h.html" title="qPathwayViz.h" alt="" coords="2109,83,2219,112"/>
+<area shape="rect" id="node76" href="$_pathway_group_8h.html" title="PathwayGroup.h" alt="" coords="2619,238,2736,267"/>
+<area shape="rect" id="node84" href="$q_v_o_i_viz_8h.html" title="qVOIViz.h" alt="" coords="1275,83,1355,112"/>
+<area shape="rect" id="node97" href="$_quench_8h.html" title="Quench.h" alt="" coords="1907,83,1984,112"/>
+<area shape="rect" id="node121" href="$q_gesture_interactor_8h.html" title="qGestureInteractor.h" alt="" coords="644,83,783,112"/>
+<area shape="rect" id="node139" href="$_stats_panel_8h.html" title="StatsPanel.h" alt="" coords="2645,83,2741,112"/>
+<area shape="rect" id="node20" href="$typedefs__event_8h.html" title="typedefs_event.h" alt="" coords="1455,392,1572,422"/>
+<area shape="rect" id="node32" href="$_d_t_i_filter_v_o_i_8h.html" title="DTIFilterVOI.h" alt="" coords="1203,160,1304,190"/>
+<area shape="rect" id="node61" href="$_overlay_8h.html" title="Overlay.h" alt="" coords="2105,238,2180,267"/>
+<area shape="rect" id="node68" href="$_subject_data_8h.html" title="SubjectData.h" alt="" coords="2305,238,2409,267"/>
+<area shape="rect" id="node73" href="$_p_d_b_helper_8h.html" title="PDBHelper.h" alt="" coords="2475,160,2571,190"/>
+<area shape="rect" id="node102" href="$_n_button_choice_dialog_8h.html" title="NButtonChoiceDialog.h" alt="" coords="1947,315,2101,344"/>
+<area shape="rect" id="node105" href="$vtk_interactor_style_quench_8h.html" title="vtkInteractorStyleQuench.h" alt="" coords="1659,160,1837,190"/>
+<area shape="rect" id="node112" href="$_overlay_panel_8h.html" title="OverlayPanel.h" alt="" coords="2139,160,2248,190"/>
+</map>

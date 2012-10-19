@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_multi_value_spinner.html" title="A generic class to handle mulitple values associated with a spinner, current 3." alt="" coords="5,83,131,112"/>
+<area shape="rect" id="node5" href="$class_overlay_item.html" title="OverlayItem" alt="" coords="155,83,245,112"/>
+<area shape="rect" id="node7" href="$class_range_slider.html" title="A generic slider class which has a range." alt="" coords="269,83,360,112"/>
+<area shape="rect" id="node9" href="$class_stats_checkbox_array.html" title="This class represents the graph and buttons displayed in the refine selection panel..." alt="" coords="384,83,525,112"/>
+<area shape="rect" id="node11" href="$class_v_o_i_panel.html" title="This panel is displayed in the refine selection dialog." alt="" coords="549,83,627,112"/>
+</map>

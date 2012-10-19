@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_about_dlg.html" title="AboutDlg" alt="" coords="5,83,80,112"/>
+<area shape="rect" id="node5" href="$class_color_map_panel.html" title="ColorMapPanel" alt="" coords="104,83,213,112"/>
+<area shape="rect" id="node7" href="$class_n_button_choice_dialog.html" title="A generic message box with upto 3 choices." alt="" coords="237,83,381,112"/>
+<area shape="rect" id="node9" href="$class_overlay_panel.html" title="OverlayPanel" alt="" coords="405,83,504,112"/>
+<area shape="rect" id="node11" href="$class_stats_panel.html" title="the panel displayed in the refine selection dialog, handles stats based filtering..." alt="" coords="528,83,613,112"/>
+</map>

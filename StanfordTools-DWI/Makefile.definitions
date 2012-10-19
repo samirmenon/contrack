@@ -1,0 +1,119 @@
+# Makefile definitions for bluegene compilation
+#
+
+# Uncomment a line below corresponding to your system. Then find the 
+# appropriate section below (Cygwin, Mac, FreeBSD, or Linux), and make 
+# the necessary changes to include and library paths.
+#CYGWIN = 1
+# mac = 1
+# FreeBSD = 1
+linux = 1
+
+
+# MPI or local, I don't think anybody does MPI anymore with this code
+#SYSTEM   = MPI
+SYSTEM   = local
+
+
+# How to get back to definitions file from compilation dir
+DEF_DEPTH = ../
+
+# How to get to directory that has tools as well as external dir links
+TOP_DEPTH = ../$(DEF_DEPTH)
+
+# -D_HAS_UINT_ lets us know that the system has uint typedef'd
+# -D_HAS_UINT64_ lets us know that the system has uint64_t typedef'd
+
+ifdef CYGWIN
+
+SYS_INCLUDE_PATHS 	?= -I/usr/X11R6/include/
+SYS_CXXFLAGS 		?= 
+SYS_LDFLAGS		?= 
+SYS_LIBS		?=
+AR			 = ar ruv
+
+ZLIB_INCLUDE_PATH 	?= -I$(DEF_DEPTH)/zlib-1.2.3/
+ZLIB_LIB_PATH 		?= -L$(DEF_DEPTH)/zlib-1.2.3/
+UTIL_LIB		?= -lutil
+
+else
+
+ifdef mac
+
+SYS_INCLUDE_PATHS 	?= -I/usr/X11R6/include/
+SYS_CXXFLAGS 		?= -arch i386 -D_HAS_UINT64_T
+SYS_LDFLAGS		?= -arch i386
+SYS_LIBS		?=
+AR			 = libtool -arch_only i386 -static -o 
+
+ZLIB_INCLUDE_PATH 	?= -I/usr/include
+ZLIB_LIB_PATH 		?= -I/usr/lib
+UTIL_LIB		?= $(DEF_DEPTH)/util/libutil.a
+
+else
+
+ifdef FreeBSD
+
+SYS_INCLUDE_PATHS	?= -I/usr/include -I/usr/X11R6/include -I/usr/local/include/gtk-2.0 -I/usr/X11R6/include/gtk-2.0 -I/usr/local/include/glib-2.0 -I/usr/local/include/cairo -I/usr/local/include/pango-1.0 -I/usr/X11R6/include/pango-1.0 -I/usr/local/include/atk-1.0 
+SYS_CXXFLAGS 		?= -D_HAS_UINT
+SYS_LDFLAGS		?= 
+SYS_LIBS		?= -L/usr/local/lib -lXt -lGL -lpng
+AR			 = ar ruv 
+
+ZLIB_INCLUDE_PATH	?= -I/usr/include
+ZLIB_INCLUDE_PATH	?= -L/usr/lib
+UTIL_LIB		?= -lutil
+
+else 
+
+# LINUX:
+
+SYS_INCLUDE_PATHS 	?= `pkg-config --cflags gtk+-2.0`
+SYS_CXXFLAGS 		?= -D_HAS_UINT
+SYS_LDFLAGS		?= 
+SYS_LIBS		?= -lgtk-x11-2.0 -lXt -lGL -lGLU -lpng
+AR 			 = ar ruv 
+
+ZLIB_INCLUDE_PATH 	?= -I/usr/include
+ZLIB_LIB_PATH 		?= -L/usr/lib
+UTIL_LIB		?= -lutil
+
+endif
+endif
+endif
+
+# COMMON 
+WX_CONFIG_BIN 		 = $(TOP_DEPTH)/wxWidgets/build/bin/wx-config
+WX_INCLUDE_PATHS	 = `$(WX_CONFIG_BIN) --cxxflags`
+WX_LIB_PATHS		 = `$(WX_CONFIG_BIN) --libs` `$(WX_CONFIG_BIN) --gl-libs`
+VTK_INCLUDE_PATHS 	 = -I$(TOP_DEPTH)/vtk/build/include/vtk -I$(TOP_DEPTH)/vtk/build
+VTK_LIB_PATHS 		 = -L$(TOP_DEPTH)/vtk/build/bin
+RAPID_INCLUDE_PATH 	?= -I$(DEF_DEPTH)/RAPID201/ 
+RAPID_LIB_PATH 		?= -L$(DEF_DEPTH)/RAPID201/ 
+TNT_INCLUDE_PATH 	?= -I$(DEF_DEPTH)/tnt/ 
+JAMA_INCLUDE_PATH 	?= -I$(DEF_DEPTH)/jama/ 
+
+
+
+# Parallel Processor Stuff
+
+ifeq ($(SYSTEM),MPI)
+  # MPI_HOME must be defined
+  CC  =  $(MPI_HOME)/bin/mpicc
+  CPP =  $(MPI_HOME)/bin/mpicxx
+  MPI_INCLUDES = -I$(MPI_HOME)/include
+  MPI_LIBPATH  = -L$(MPI_HOME)/lib 
+  LIBPATH = $(MPI_LIBPATH)
+  INCLUDES  = $(MPI_INCLUDES)
+  # /* add SEEK Bug fix for MPICH2 */
+  CFLAGS = -DUSE_MPI -DMPICH_IGNORE_CXX_SEEK
+  CFLAGS_ALL =	
+  LDFLAGS_ALL =	
+endif
+
+ifeq ($(SYSTEM),local)
+  CC  =  gcc
+  CPP =  g++
+  LIBPATH = 
+  INCLUDES  = 
+endif

@@ -1,0 +1,18 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$class_i_event_source.html" title="IEventSource is the base interface for all event generating classes." alt="" coords="132,265,231,295"/>
+<area shape="rect" id="node4" href="$classq_v_o_i_viz.html" title="This class contains the list of 3d vtk based VOI." alt="" coords="783,112,852,141"/>
+<area shape="rect" id="node16" href="$classq_volume_viz.html" title="This class handles interaction with the current background nifti image." alt="" coords="620,209,711,239"/>
+<area shape="rect" id="node21" href="$classq_pathway_viz.html" title="This class deals in storing and coloring fibers in 3d vtk format." alt="" coords="768,405,867,435"/>
+<area shape="rect" id="node26" href="$class_visibility_panel.html" title="Array of fibergroups which are displayed on the screen." alt="" coords="447,475,551,504"/>
+<area shape="rect" id="node6" href="$class_i_event_listener.html" title="IEventListener is base interface for all listener classes." alt="" coords="448,59,549,88"/>
+<area shape="rect" id="node9" href="$classq_scale_tool.html" title="Specialization of the manipulation tool to deal with scaling." alt="" coords="456,5,541,35"/>
+<area shape="rect" id="node11" href="$classq_manipulation_tool.html" title="A multi axis manipulation tool." alt="" coords="119,59,244,88"/>
+<area shape="rect" id="node13" href="$classq_move_tool.html" title="Specialization of the manipulation tool to deal with translation." alt="" coords="457,112,540,141"/>
+<area shape="rect" id="node19" href="$classq_gesture_interactor.html" title="vtk based class to draw user gestures" alt="" coords="753,317,881,347"/>
+<area shape="rect" id="node24" href="$class_d_t_i_pathway_assignment.html" title="Stores the mapping of fibers to fiber groups." alt="" coords="419,421,579,451"/>
+<area shape="rect" id="node29" href="$class_color_button.html" title="A vtk gui element to represent the color and visibility of a fiber group." alt="" coords="136,471,227,500"/>
+<area shape="rect" id="node31" href="$class_button.html" title="A vtk based button class consists of actor with text and border." alt="" coords="7,497,65,527"/>
+<area shape="rect" id="node33" href="$class_texture_button.html" title="Class representing a textured vtk button." alt="" coords="131,527,232,556"/>
+<area shape="rect" id="node36" href="$class_mode_selector.html" title="A panel with a group of buttons." alt="" coords="448,531,549,560"/>
+<area shape="rect" id="node38" href="$class_pathway_group_array.html" title="The class contains an array of &#160;&#39;s." alt="" coords="429,317,568,347"/>
+</map>

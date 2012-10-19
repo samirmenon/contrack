@@ -1,0 +1,13 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$_overlay_item_8cpp.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qwx/OverlayItem.cpp" alt="" coords="5,237,565,267"/>
+<area shape="rect" id="node5" href="$_overlay_panel_8cpp.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qwx/OverlayPanel.cpp" alt="" coords="4757,237,5325,267"/>
+<area shape="rect" id="node8" href="$_overlay_panel_8h.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qwx/OverlayPanel.h" alt="" coords="4164,83,4719,112"/>
+<area shape="rect" id="node11" href="$_quench_8cpp.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qwx/Quench.cpp" alt="" coords="4173,237,4709,267"/>
+<area shape="rect" id="node14" href="$_quench_8h.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qwx/Quench.h" alt="" coords="2664,160,3187,189"/>
+<area shape="rect" id="node16" href="$_overlay_8cpp.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qvtk/Overlay.cpp" alt="" coords="1739,237,2272,267"/>
+<area shape="rect" id="node19" href="$q_volume_viz_8cpp.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qvtk/qVolumeViz.cpp" alt="" coords="2320,237,2883,267"/>
+<area shape="rect" id="node22" href="$vtk_interactor_style_quench_8cpp.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qvtk/vtkInteractorStyleQuench.cpp" alt="" coords="2931,237,3568,267"/>
+<area shape="rect" id="node25" href="$_history_8cpp.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qwx/History.cpp" alt="" coords="3616,237,4149,267"/>
+<area shape="rect" id="node30" href="$_stats_panel_8cpp.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qwx/StatsPanel.cpp" alt="" coords="589,237,1144,267"/>
+<area shape="rect" id="node32" href="$_v_o_i_panel_8cpp.html" title="C:/Shireesh/Work/Sandbox/Quench/trunk/Quench/Quench_ver2/quench/qwx/VOIPanel.cpp" alt="" coords="1168,237,1715,267"/>
+</map>

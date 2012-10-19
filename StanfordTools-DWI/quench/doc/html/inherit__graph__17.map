@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$classq_manipulation_tool.html" title="A multi axis manipulation tool." alt="" coords="7,32,132,61"/>
+<area shape="rect" id="node3" href="$classq_move_tool.html" title="Specialization of the manipulation tool to deal with translation." alt="" coords="184,5,267,35"/>
+<area shape="rect" id="node5" href="$classq_scale_tool.html" title="Specialization of the manipulation tool to deal with scaling." alt="" coords="183,59,268,88"/>
+</map>

@@ -1,0 +1,21 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$_stats_panel_8h.html" title="StatsPanel.h" alt="" coords="724,83,820,112"/>
+<area shape="rect" id="node44" href="$_range_slider_8h.html" title="RangeSlider.h" alt="" coords="5,237,107,267"/>
+<area shape="rect" id="node48" href="$_stats_checkbox_array_8h.html" title="StatsCheckboxArray.h" alt="" coords="413,83,565,112"/>
+<area shape="rect" id="node51" href="$_quench_8h.html" title="Quench.h" alt="" coords="1879,83,1956,112"/>
+<area shape="rect" id="node109" href="$_visibility_panel_8h.html" title="VisibilityPanel.h" alt="" coords="328,160,443,189"/>
+<area shape="rect" id="node5" href="$typedefs__quench_8h.html" title="typedefs_quench.h" alt="" coords="791,315,921,344"/>
+<area shape="rect" id="node25" href="$_p_d_b_helper_8h.html" title="PDBHelper.h" alt="" coords="2115,237,2211,267"/>
+<area shape="rect" id="node28" href="$_pathway_group_8h.html" title="PathwayGroup.h" alt="" coords="2275,315,2392,344"/>
+<area shape="rect" id="node36" href="$_v_o_i_panel_8h.html" title="VOIPanel.h" alt="" coords="860,160,948,189"/>
+<area shape="rect" id="node19" href="$typedefs__event_8h.html" title="typedefs_event.h" alt="" coords="747,392,864,421"/>
+<area shape="rect" id="node57" href="$_n_button_choice_dialog_8h.html" title="NButtonChoiceDialog.h" alt="" coords="1840,160,1995,189"/>
+<area shape="rect" id="node64" href="$vtk_interactor_style_quench_8h.html" title="vtkInteractorStyleQuench.h" alt="" coords="2269,160,2448,189"/>
+<area shape="rect" id="node74" href="$_overlay_panel_8h.html" title="OverlayPanel.h" alt="" coords="1236,160,1345,189"/>
+<area shape="rect" id="node89" href="$q_volume_viz_8h.html" title="qVolumeViz.h" alt="" coords="1680,160,1781,189"/>
+<area shape="rect" id="node102" href="$_history_8h.html" title="History.h" alt="" coords="2120,160,2195,189"/>
+<area shape="rect" id="node77" href="$_overlay_item_8h.html" title="OverlayItem.h" alt="" coords="1240,237,1341,267"/>
+<area shape="rect" id="node84" href="$_subject_data_8h.html" title="SubjectData.h" alt="" coords="1517,237,1621,267"/>
+<area shape="rect" id="node93" href="$_overlay_8h.html" title="Overlay.h" alt="" coords="1645,237,1720,267"/>
+<area shape="rect" id="node117" href="$_button_8h.html" title="Button.h" alt="" coords="379,237,448,267"/>
+</map>

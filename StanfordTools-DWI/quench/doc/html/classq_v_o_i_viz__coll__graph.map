@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$class_i_event_listener.html" title="IEventListener is base interface for all listener classes." alt="" coords="5,85,107,115"/>
+<area shape="rect" id="node4" href="$class_i_event_source.html" title="IEventSource is the base interface for all event generating classes." alt="" coords="131,85,229,115"/>
+<area shape="rect" id="node6" href="$classq_scale_tool.html" title="Specialization of the manipulation tool to deal with scaling." alt="" coords="253,85,339,115"/>
+<area shape="rect" id="node8" href="$classq_manipulation_tool.html" title="A multi axis manipulation tool." alt="" coords="296,5,421,35"/>
+<area shape="rect" id="node10" href="$classq_move_tool.html" title="Specialization of the manipulation tool to deal with translation." alt="" coords="363,85,445,115"/>
+</map>

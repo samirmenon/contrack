@@ -1,0 +1,23 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$vtk_filled_caption_actor2_d_8h.html" title="vtkFilledCaptionActor2D.h" alt="" coords="5,83,176,112"/>
+<area shape="rect" id="node7" href="$_v_o_i_panel_8h.html" title="VOIPanel.h" alt="" coords="483,160,571,189"/>
+<area shape="rect" id="node31" href="$vtk_v_o_i_8h.html" title="vtkVOI.h" alt="" coords="157,237,227,267"/>
+<area shape="rect" id="node45" href="$_quench_8h.html" title="Quench.h" alt="" coords="1295,83,1372,112"/>
+<area shape="rect" id="node116" href="$mesh_8h.html" title="icons/mesh.h" alt="" coords="1647,83,1745,112"/>
+<area shape="rect" id="node118" href="$sphere_8h.html" title="icons/sphere.h" alt="" coords="1769,83,1876,112"/>
+<area shape="rect" id="node120" href="$cube_8h.html" title="icons/cube.h" alt="" coords="1900,83,1996,112"/>
+<area shape="rect" id="node122" href="$delete_8h.html" title="icons/delete.h" alt="" coords="2020,83,2121,112"/>
+<area shape="rect" id="node9" href="$typedefs__quench_8h.html" title="typedefs_quench.h" alt="" coords="863,315,993,344"/>
+<area shape="rect" id="node23" href="$typedefs__event_8h.html" title="typedefs_event.h" alt="" coords="885,392,1003,421"/>
+<area shape="rect" id="node34" href="$_d_t_i_filter_v_o_i_8h.html" title="DTIFilterVOI.h" alt="" coords="267,315,368,344"/>
+<area shape="rect" id="node51" href="$_n_button_choice_dialog_8h.html" title="NButtonChoiceDialog.h" alt="" coords="1520,160,1675,189"/>
+<area shape="rect" id="node58" href="$vtk_interactor_style_quench_8h.html" title="vtkInteractorStyleQuench.h" alt="" coords="1941,237,2120,267"/>
+<area shape="rect" id="node68" href="$_overlay_panel_8h.html" title="OverlayPanel.h" alt="" coords="948,160,1057,189"/>
+<area shape="rect" id="node83" href="$q_volume_viz_8h.html" title="qVolumeViz.h" alt="" coords="728,160,829,189"/>
+<area shape="rect" id="node93" href="$_pathway_group_8h.html" title="PathwayGroup.h" alt="" coords="1723,315,1840,344"/>
+<area shape="rect" id="node98" href="$_p_d_b_helper_8h.html" title="PDBHelper.h" alt="" coords="1501,237,1597,267"/>
+<area shape="rect" id="node105" href="$_history_8h.html" title="History.h" alt="" coords="1371,160,1445,189"/>
+<area shape="rect" id="node71" href="$_overlay_item_8h.html" title="OverlayItem.h" alt="" coords="864,237,965,267"/>
+<area shape="rect" id="node78" href="$_subject_data_8h.html" title="SubjectData.h" alt="" coords="1192,237,1296,267"/>
+<area shape="rect" id="node87" href="$_overlay_8h.html" title="Overlay.h" alt="" coords="648,237,723,267"/>
+</map>

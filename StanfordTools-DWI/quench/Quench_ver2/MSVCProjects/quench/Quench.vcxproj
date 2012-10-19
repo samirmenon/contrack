@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F5B82827-92AF-4E41-A05A-7FA396423432}</ProjectGuid>
+    <RootNamespace>Quench</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>NotSet</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.21006.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\wxWidgets-2.8.10\include;C:\Program Files\vtk5.4.2\bin\include;C:\wxWidgets-2.8.10\include\msvc;$(ProjectDir)..\..\quench\qvtk;$(ProjectDir)..\..\quench\qwx;$(ProjectDir)..\..\util;$(ProjectDir)..\..\RAPID201;$(ProjectDir)..\..\nifti;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\wxWidgets-2.8.10\include;C:\Program Files\vtk5.4.2\bin\include;C:\wxWidgets-2.8.10\include\msvc;$(ProjectDir)..\..\quench\qvtk;$(ProjectDir)..\..\quench\qwx;$(ProjectDir)..\..\util;$(ProjectDir)..\..\RAPID201;$(ProjectDir)..\..\nifti;$(IncludePath)</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\..\..\..\..\..\..\Program Files\vtk5.4.2\bin\bin\$(Configuration);c:\wxWidgets-2.8.10\lib\vc_lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\..\..\..\..\..\..\Program Files\vtk5.4.2\bin\bin\$(Configuration);c:\wxWidgets-2.8.10\lib\vc_lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>..\..\util;..\..\nifti;..\..\RAPID201;..\..\quench\vtk;..\..\quench\wx;..\..\quench</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>comctl32.lib;Rpcrt4.lib;Ws2_32.lib;opengl32.lib;rapid.lib;glu32.lib;vtkIO.lib;vtkExpat.lib;vtksys.lib;vtkRendering.lib;vtkGraphics.lib;vtkImaging.lib;vtkFiltering.lib;vtkCommon.lib;vtkHybrid.lib;vtkpng.lib;vtktiff.lib;vtkzlib.lib;vtkftgl.lib;vtkfreetype.lib;vtkjpeg.lib;vtkDICOMParser.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)\..\..\RAPID201;C:\Program Files\vtk5.4.2\bin\bin\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>..\..\util;..\..\nifti;..\..\RAPID201;..\..\quench\vtk;..\..\quench\wx;..\..\quench</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>comctl32.lib;Rpcrt4.lib;Ws2_32.lib;opengl32.lib;rapid.lib;glu32.lib;vtkIO.lib;vtkExpat.lib;vtksys.lib;vtkRendering.lib;vtkGraphics.lib;vtkImaging.lib;vtkFiltering.lib;vtkCommon.lib;vtkHybrid.lib;vtkpng.lib;vtktiff.lib;vtkzlib.lib;vtkftgl.lib;vtkfreetype.lib;vtkjpeg.lib;vtkDICOMParser.lib;LIBCPMT.LIB; LIBCMT.LIB;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)\..\..\RAPID201;C:\Program Files\vtk5.4.2\bin\bin\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;msvcrt.lib;msvcprt.lib;</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\nifti\nifti.vcxproj">
+      <Project>{0a236a7b-a072-4964-ab01-aed44d6b6ab7}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\util\util.vcxproj">
+      <Project>{b2daec77-1664-4c9b-8951-bccdc92b09ce}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\quench\qvtk\Button.h" />
+    <ClInclude Include="..\..\quench\qvtk\ModeSelector.h" />
+    <ClInclude Include="..\..\quench\qvtk\Overlay.h" />
+    <ClInclude Include="..\..\quench\qvtk\qGestureInteractor.h" />
+    <ClInclude Include="..\..\quench\qvtk\qMoveTool.h" />
+    <ClInclude Include="..\..\quench\qvtk\qPathwayViz.h" />
+    <ClInclude Include="..\..\quench\qvtk\qVOIViz.h" />
+    <ClInclude Include="..\..\quench\qvtk\qVolumeViz.h" />
+    <ClInclude Include="..\..\quench\qvtk\VisibilityPanel.h" />
+    <ClInclude Include="..\..\quench\qvtk\vtkFilledCaptionActor2D.h" />
+    <ClInclude Include="..\..\quench\qvtk\vtkInteractorStyleQuench.h" />
+    <ClInclude Include="..\..\quench\qvtk\vtkVOI.h" />
+    <ClInclude Include="..\..\quench\qwx\ColorMapPanel.h" />
+    <ClInclude Include="..\..\quench\qwx\History.h" />
+    <ClInclude Include="..\..\quench\qwx\ImagePreview.h" />
+    <ClInclude Include="..\..\quench\qwx\NButtonChoiceDialog.h" />
+    <ClInclude Include="..\..\quench\qwx\Network.h" />
+    <ClInclude Include="..\..\quench\qwx\OverlayItem.h" />
+    <ClInclude Include="..\..\quench\qwx\OverlayPanel.h" />
+    <ClInclude Include="..\..\quench\qwx\PerPointColor.h" />
+    <ClInclude Include="..\..\quench\qwx\Quench.h" />
+    <ClInclude Include="..\..\quench\qwx\RangeSlider.h" />
+    <ClInclude Include="..\..\quench\qwx\SceneWindow.h" />
+    <ClInclude Include="..\..\quench\qwx\StatsCheckboxArray.h" />
+    <ClInclude Include="..\..\quench\qwx\StatsPanel.h" />
+    <ClInclude Include="..\..\quench\qwx\typedefs_event.h" />
+    <ClInclude Include="..\..\quench\qwx\typedefs_quench.h" />
+    <ClInclude Include="..\..\quench\qwx\VOIPanel.h" />
+    <ClInclude Include="..\..\quench\qwx\wxVTKRenderWindowInteractor.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\quench\qvtk\Button.cpp" />
+    <ClCompile Include="..\..\quench\qvtk\ModeSelector.cpp" />
+    <ClCompile Include="..\..\quench\qvtk\Overlay.cpp" />
+    <ClCompile Include="..\..\quench\qvtk\qGestureInteractor.cpp" />
+    <ClCompile Include="..\..\quench\qvtk\qMoveTool.cpp" />
+    <ClCompile Include="..\..\quench\qvtk\qPathwayViz.cpp" />
+    <ClCompile Include="..\..\quench\qvtk\qVOIViz.cpp" />
+    <ClCompile Include="..\..\quench\qvtk\qVolumeViz.cpp" />
+    <ClCompile Include="..\..\quench\qvtk\VisibilityPanel.cpp" />
+    <ClCompile Include="..\..\quench\qvtk\vtkFilledCaptionActor2D.cpp" />
+    <ClCompile Include="..\..\quench\qvtk\vtkInteractorStyleQuench.cpp" />
+    <ClCompile Include="..\..\quench\qvtk\vtkVOI.cpp" />
+    <ClCompile Include="..\..\quench\qwx\ColorMapPanel.cpp" />
+    <ClCompile Include="..\..\quench\qwx\History.cpp" />
+    <ClCompile Include="..\..\quench\qwx\ImagePreview.cpp" />
+    <ClCompile Include="..\..\quench\qwx\Network.cpp" />
+    <ClCompile Include="..\..\quench\qwx\OverlayItem.cpp" />
+    <ClCompile Include="..\..\quench\qwx\OverlayPanel.cpp" />
+    <ClCompile Include="..\..\quench\qwx\PerPointColor.cpp" />
+    <ClCompile Include="..\..\quench\qwx\Quench.cpp" />
+    <ClCompile Include="..\..\quench\qwx\RangeSlider.cpp" />
+    <ClCompile Include="..\..\quench\qwx\SceneWindow.cpp" />
+    <ClCompile Include="..\..\quench\qwx\StatsCheckboxArray.cpp" />
+    <ClCompile Include="..\..\quench\qwx\StatsPanel.cpp" />
+    <ClCompile Include="..\..\quench\qwx\VOIPanel.cpp" />
+    <ClCompile Include="..\..\quench\qwx\wxVTKRenderWindowInteractor.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

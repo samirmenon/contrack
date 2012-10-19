@@ -1,0 +1,17 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_i_event_source.html" title="IEventSource is the base interface for all event generating classes." alt="" coords="147,352,245,381"/>
+<area shape="rect" id="node5" href="$class_color_map_panel.html" title="ColorMapPanel" alt="" coords="323,5,432,35"/>
+<area shape="rect" id="node7" href="$class_multi_value_spinner.html" title="A generic class to handle mulitple values associated with a spinner, current 3." alt="" coords="315,59,440,88"/>
+<area shape="rect" id="node9" href="$class_network.html" title="Network" alt="" coords="343,112,412,141"/>
+<area shape="rect" id="node11" href="$class_overlay_item.html" title="OverlayItem" alt="" coords="332,165,423,195"/>
+<area shape="rect" id="node13" href="$class_overlay_panel.html" title="OverlayPanel" alt="" coords="328,219,427,248"/>
+<area shape="rect" id="node15" href="$classq_pathway_viz.html" title="This class deals in storing and coloring fibers in 3d vtk format." alt="" coords="328,272,427,301"/>
+<area shape="rect" id="node17" href="$classq_v_o_i_viz.html" title="This class contains the list of 3d vtk based VOI." alt="" coords="343,325,412,355"/>
+<area shape="rect" id="node19" href="$classq_volume_viz.html" title="This class handles interaction with the current background nifti image." alt="" coords="332,379,423,408"/>
+<area shape="rect" id="node21" href="$class_range_slider.html" title="A generic slider class which has a range." alt="" coords="332,432,423,461"/>
+<area shape="rect" id="node23" href="$class_stats_checkbox_array.html" title="This class represents the graph and buttons displayed in the refine selection panel..." alt="" coords="307,485,448,515"/>
+<area shape="rect" id="node25" href="$class_stats_panel.html" title="the panel displayed in the refine selection dialog, handles stats based filtering..." alt="" coords="335,539,420,568"/>
+<area shape="rect" id="node27" href="$class_visibility_panel.html" title="Array of fibergroups which are displayed on the screen." alt="" coords="325,592,429,621"/>
+<area shape="rect" id="node29" href="$class_v_o_i_panel.html" title="This panel is displayed in the refine selection dialog." alt="" coords="339,645,416,675"/>
+<area shape="rect" id="node31" href="$classvtk_interactor_style_quench.html" title="Main class to handle interaction with the vtk renderer." alt="" coords="295,699,460,728"/>
+</map>
