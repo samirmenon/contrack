@@ -19,6 +19,7 @@ To set up contrack with Eclipse:
 $ contrack_gen -i ctrSampler_20110827T152126.txt -p ltLGN_ltCalcFreesurfer_9_20110827T152126.pdb
 
 
+===================================
 TODO:
 
 1. While comparing the tensor data, use nearest neighbour?
@@ -31,6 +32,8 @@ TODO:
 
 3. Compute this in xyz space or voxel space?
 > Just copy contrack. (Add an option).
+> Contrack: uses vox_id_xyz ./ sizeof(vox_xyz)
+See in DTIStats::computeLogScoreAbsorption()
 
 4. Is the xyz ras or acpc? 
 > Most likely ras. Double check.
@@ -46,6 +49,16 @@ TODO:
 
 10. PDS is for node. PS is for edges except boundary nodes
 
+===================================
+Some notes from contrack:
+1. DTIStats::scorePathway() : Computes the log score for fiber paths (convert mult to add)
+
+2. Contrack computes:
+(a) LogAbsorbtion : Whether or not the fiber is {hit target, exit wm; else}.
+DTIStats::computeLogScoreAbsorption()
+
+(b) LogPrior : 
+DTIStats::computeLogScorePrior()
 ===================================
 
 Code sharing : Set up the repository on Github.
