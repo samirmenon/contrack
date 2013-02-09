@@ -1,16 +1,24 @@
-function [ scores ] = contrack_score( fg, dwiData, dwiSeg, dwiROI )
-%CONTRACK_SCORE Summary of this function goes here
+function [ scores ] = contrack_score(fg, dwiData, dwiSeg, dwiROI )
+% Runs the Contrack score algorithm to rate a set of fiber tracts
+%     [ scores ] = contrack_score( fg, dwiData, dwiSeg, dwiROI )
+% 
 % Inputs:
 %   fg : A fiber group, which essentially summarizes a pdb file.
 %        The pdb file is imported as fg.fibers (struct with 3xn-paths)
 %        NOTE : This is typically loaded from a pdb file
 %        >> fg = dtiLoadFiberGroup('fname.pdb')
 % 
-%   tensors: The diffusion tensors at each voxel.
+%   dwiData : The diffusion weighted data
+% 
+%   dwiSeg : A co-registered segmented volume
+% 
+%   dwiROI : An ROI to avoid
 % 
 % Outuputs:
 %   score : A vector of n * 1, with scores for each fiber, ordered using
 %           the same numerical index as the fg.fibers input.
+% HISTORY:
+% 2012.12.05 SM: wrote it.
 
 % Count the fibers. Each will be scored independently
 n_fibers = length(fg.fibers);
@@ -18,7 +26,7 @@ n_fibers = length(fg.fibers);
 scores = zeros(n_fibers,1);
 
 % Compute the Bingham distribution constants
-% NOTE TODO : 
+% NOTE TODO : Get these from somewhere.
 C =1;
 CL = 1;
 sigmaM = 1;
