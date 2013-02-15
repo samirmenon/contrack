@@ -14,7 +14,7 @@ end
 % If X is N×N real symmetric matrix with non-negative eigenvalues, 
 % then eigenvalues and singular values coincide.
 % Also, since Cov is symmetric, U = V.
-[U S V] = svd(Cov); 
+[U S V] = svd(Cov);
 % [U,L] = eig(Cov);
 
 % For N standard deviations spread of data, the radii of the eliipsoid will

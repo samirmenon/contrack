@@ -32,7 +32,7 @@ t3 = t3 / sin(sigma3);
 sigma2star = d(2,2) / ( d(2,2) + d(3,3) ) * delta;
 sigma2 = sigmaM + sigma2star;
 t2 = v(:,2)'*t;
-t2 = t1 / sin(sigma2);
+t2 = t2 / sin(sigma2);
 
 bhamScore = C* exp( -(t3*t3) - (t2*t2));
 
