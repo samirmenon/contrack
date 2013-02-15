@@ -9,7 +9,8 @@ tensors = [];
 % Remove the 1
 dwiTensors = squeeze(dwiData.vol); 
 
-ras2vox = inv(dwiData.vox2ras);
+%The fibers are in xyz. So convert the DWI data from voxels to xyz.
+ras2vox = inv(dwiData.vox2ras); 
 
 % Convert the tract's xyz coordinates (ras?) into voxel coordinates
 fibXYZRAS = xyzTractRAS;

@@ -37,3 +37,9 @@ for i=1:size(fg.fibers{fib_id},2),
 end
 
 figure(1); hold off; grid on; axis equal; axis tight;
+
+%% Now score the path.
+tmpStructural = dwiData.vol(:,:,:,1,1);
+scores = contrack_score(fg, dwiData, tmpStructural,  tmpStructural.*0 + 1);
+
+
