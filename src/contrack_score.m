@@ -1,6 +1,6 @@
-function [ scores ] = contrack_score(fg, dwiData, dwiSeg, dwiROI )
+function [ scores ] = contrack_score(fg, dt6, fib2voxXform, dwiSeg, dwiROI )
 % Runs the Contrack score algorithm to rate a set of fiber tracts
-%     [ scores ] = contrack_score( fg, dwiData, dwiSeg, dwiROI )
+%     [ scores ] = contrack_score( fg, dt6, dwiSeg, dwiROI )
 % 
 % Inputs:
 %   fg : A fiber group, which essentially summarizes a pdb file.
@@ -8,7 +8,7 @@ function [ scores ] = contrack_score(fg, dwiData, dwiSeg, dwiROI )
 %        NOTE : This is typically loaded from a pdb file
 %        >> fg = dtiLoadFiberGroup('fname.pdb')
 % 
-%   dwiData : The diffusion weighted data
+%   dt6 : The diffusion weighted data
 % 
 %   dwiSeg : A co-registered segmented volume. Could be higher res than the
 %            diffusion data. Contains the ROI.
@@ -39,6 +39,7 @@ eta = .175;         % User param. From paper (pg. 7 col. 2, para 2)
 sigmaC = 1; % Angular dispersion
 CW = 1;     % Normalizing constant
 lambda = exp(-2); % User length scoring param. From paper (pg. 7 col. 2, para 3)
+angleCutoff = 2.26;% radians = 129.488462 degrees
 
 for f_ctr=1:n_fibers,
   % Algorithm to compute the score :
@@ -47,20 +48,20 @@ for f_ctr=1:n_fibers,
   %  D = Raw diffusion data
   
   % Get the raw fiber data (xyz tangent vectors along a trajectory)
-  % size = 3xfiber-len
-  fgf = fg.fibers{f_ctr};
+  fgf = fg.fibers{1}; % size = 3xfiber-len
+  fgftan = diff(fg.fibers{1}')'; % size = 3xfiber-len - 1
   
   % Get the diffusion tensors along the fiber path
-  tensors = ctrExtractDWITensorsAlongPath(fgf,dwiData);
+  tensors = ctrExtractDWITensorsAlongPath(fgf,dt6,fib2voxXform);
 
   % Stage 1: Compute p(D|s) = Π_{i=1:n} [ p(Di | ti) ]
   % Di are diffusion tensors at each point along the pathway
   % ti are tangent vectors at each point along the pathway
   pds = 1;
   %For each tangent vector along the length of the fiber
-  for j=1:size(fgf,2),
+  for j=1:size(fgftan,2),
     % Compute the score for the tangent
-    pdt = ctrBinghamScore(fgf(:,j), tensors{j}.D, C, CL, sigmaM, eta );
+    pdt = ctrBinghamScore(fgftan(:,j), tensors{j+1}.D, C, CL, sigmaM, eta );
     % Multiply the estimates for this point
     pds = pds * pdt;
     % No need to loop if the score goes to zero somewhere in the middle
@@ -70,7 +71,7 @@ for f_ctr=1:n_fibers,
   
   % Stage 2: Compute p(s) = pend(s1)*pend(sn) Π_{i=1:n} [ p(Di | ti) ]
   % Get the roi values along the fiber path (used in computing ps).
-  roi = ctrExtractROIAlongPath(fgf, dwiROI);
+  roi = ctrExtractROIAlongPath(fgf, dwiROI, fib2voxXform);
   % Make sure the fiber starts and ends in the ROI.
   pends1 = roi(1);
   pendsn = roi(end);
@@ -83,13 +84,16 @@ for f_ctr=1:n_fibers,
   
   %For each edge of the fiber
   for j=2:size(fgf,2)-1,
-    % Local angule between two edges of the tract
+    % Local angle between two edges of the tract
     segPre = (fgf(:,j) - fgf(:,j-1));
     segPre = segPre./norm(segPre);
     segPost = (fgf(:,j+1) - fgf(:,j));
     segPost = segPost./norm(segPost);
     % Inv cos of the dot product
     thetaSeg = acos(segPost'*segPre);
+    % Apply a cut-off angle
+    if( thetaSeg > angleCutoff ) ps = 0; break; end;
+    
     % Compute the watson score 
     pcurve = ctrWatsonScore(CW, sigmaC, thetaSeg);
     % Compute the manual knob and wm mask
@@ -97,7 +101,7 @@ for f_ctr=1:n_fibers,
     % Multiply the estimates for this point
     ps = ps * pcurve * plen;
     % No need to loop if the score goes to zero somewhere in the middle
-    if(ps == 0) scores(f_ctr) = 0; break; end;
+    if(ps == 0) break; end;
   end
   
   % Stage 3: Compute the score Q(s)
