@@ -1,7 +1,17 @@
-function [ tensors ] = ctrExtractDWITensorsAlongPath(xyzTract, dt6, fib2voxXform )
+function [ tensors ] = ctrExtractDWITensorsAlongPath(xyzTract, dt6, fib2voxXform)
 %CTREXTRACTDWITENSORSALONGPATH Extracts the tensors along a set of fiber
 %paths
 %   Extracts diffusion tensors along a set of pathways
+% 
+% Inputs :
+% 
+% xyzTract : The tract matrix: [[x0 y0 z0]' [x1 y1 z1]'... [xn yn zn]']
+%      dt6 : The diffusion tensors across the brain.
+% fib2voxXform : The xfrom from tract xyz space to fiber voxel space.
+% 
+% Outputs :
+% 
+% tensors : A struct array of tensors wrt each fiber point == tensor{i}.D
 
 tensors = [];
 
