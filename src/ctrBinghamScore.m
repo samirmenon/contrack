@@ -19,8 +19,9 @@ function [ bhamScore ] = ctrBinghamScore(t, D, C, CL, sigmaM, eta )
 % Compute the eigenvectors and eigenvalues of the diffusion tensor
 [v d] = eigs(D);
 
-% Compute delta
-delta = 100 / ( 1 + exp(- (eta - CL) / 0.015) );
+% Compute delta = 100deg / (1+ exp( - (eta - CL) / 0.015 ) );
+% SM : Update. We move to radians instead of degrees.
+delta = (100 * pi/180) / ( 1 + exp(- (eta - CL) / 0.015) );
 
 % Compute the term for eigenvector 3
 sigma3star = d(3,3) / ( d(2,2) + d(3,3) ) * delta;
