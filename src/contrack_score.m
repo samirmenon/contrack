@@ -30,15 +30,15 @@ scores = zeros(n_fibers,1);
 
 % Compute the Bingham distribution constants
 % NOTE TODO : Get these from somewhere.
-C =1;
-CL = 1;
-sigmaM = 1;
-eta = 1;    % User specified parameter
+C =1;               % Fix this
+CL = 1;             % Fix this
+sigmaM = pi*14/180; % User param. From paper (pg. 7 col. 2, para 1)
+eta = .175;         % User param. From paper (pg. 7 col. 2, para 2)
 
 % Compute the Watson distribution constants
 sigmaC = 1; % Angular dispersion
 CW = 1;     % Normalizing constant
-lambda = 1; % User specified length scoring parameter
+lambda = exp(-2); % User length scoring param. From paper (pg. 7 col. 2, para 3)
 
 for f_ctr=1:n_fibers,
   % Algorithm to compute the score :
@@ -69,15 +69,17 @@ for f_ctr=1:n_fibers,
   if(pds == 0) scores(f_ctr) = 0; continue; end;
   
   % Stage 2: Compute p(s) = pend(s1)*pend(sn) Π_{i=1:n} [ p(Di | ti) ]
-  % NOTE TODO : Computing these requires idx into ROI. Where to get that?
-  pends1 = 1; %Fix this later
-  pendsn = 1; %Fix this later
+  % Get the roi values along the fiber path (used in computing ps).
+  roi = ctrExtractROIAlongPath(fgf, dwiROI);
+  % Make sure the fiber starts and ends in the ROI.
+  pends1 = roi(1);
+  pendsn = roi(end);
+  
+  % Initialize ps
   ps = pends1 * pendsn;
+  
   % No need to loop if the score goes to zero somewhere in the middle
-  if(ps == 0) 
-    scores(f_ctr) = 0; 
-    continue;
-  end
+  if(ps == 0) scores(f_ctr) = 0; continue; end;
   
   %For each edge of the fiber
   for j=2:size(fgf,2)-1,
@@ -90,14 +92,13 @@ for f_ctr=1:n_fibers,
     thetaSeg = acos(segPost'*segPre);
     % Compute the watson score 
     pcurve = ctrWatsonScore(CW, sigmaC, thetaSeg);
-    % NOTE TODO : Compute the manual knob and wm mask
-    plen = 1; % Fix this later.
+    % Compute the manual knob and wm mask
+    plen = lambda * roi(j); % If the ROI is zero, this will exit.
     % Multiply the estimates for this point
     ps = ps * pcurve * plen;
     % No need to loop if the score goes to zero somewhere in the middle
     if(ps == 0) scores(f_ctr) = 0; break; end;
   end
-  if(ps == 0) scores(f_ctr) = 0; continue; end;
   
   % Stage 3: Compute the score Q(s)
   scores(f_ctr) = pds * ps;
