@@ -4,7 +4,8 @@ function [ scores ] = contrack_score(fg, dt6, fib2voxXform, dwiSeg, dwiROI )
 % 
 % Inputs:
 %   fg : A fiber group, which essentially summarizes a pdb file.
-%        The pdb file is imported as fg.fibers (struct with 3xn-paths)
+%        The pdb file is imported as `fgGet(fg,'fibers')` (struct with 
+%        3xn-paths).
 %        NOTE : This is typically loaded from a pdb file
 %        >> fg = dtiLoadFiberGroup('fname.pdb')
 % 
@@ -19,12 +20,13 @@ function [ scores ] = contrack_score(fg, dt6, fib2voxXform, dwiSeg, dwiROI )
 % 
 % Outuputs:
 %   score : A vector of n * 1, with scores for each fiber, ordered using
-%           the same numerical index as the fg.fibers input.
+%           the same numerical index as the `fgGet(fg,'fibers')` input.
 % HISTORY:
 % 2012.12.05 SM: wrote it.
 
 % Count the fibers. Each will be scored independently
-n_fibers = length(fg.fibers);
+fgfibers = fgGet(fg,'fibers');
+n_fibers = length(fgfibers);
 % Size the scores
 scores = zeros(n_fibers,1);
 
@@ -48,8 +50,8 @@ for f_ctr=1:n_fibers,
   %  D = Raw diffusion data
   
   % Get the raw fiber data (xyz tangent vectors along a trajectory)
-  fgf = fg.fibers{1}; % size = 3xfiber-len
-  fgftan = diff(fg.fibers{1}')'; % size = 3xfiber-len - 1
+  fgf = fgfibers{f_ctr}; % size = 3xfiber-len
+  fgftan = diff(fgfibers{f_ctr}')'; % size = 3xfiber-len - 1
   
   % Get the diffusion tensors along the fiber path
   tensors = ctrExtractDWITensorsAlongPath(fgf,dt6,fib2voxXform);
