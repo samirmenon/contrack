@@ -5,7 +5,8 @@ NAME = contrack_gen
 EXE = ${NAME}
 DEFINES   =
 LIBS      = -lm ${UTIL_LIB} -lRAPID -lnifti -lz
-CFLAGS    += -O5 -I.. -I../util $(SYS_CXXFLAGS)
+#CFLAGS    += -O5 -I.. -I../util $(SYS_CXXFLAGS)
+CFLAGS    += -O0 -g -pg -ggdb -I.. -I../util $(SYS_CXXFLAGS)
 LDFLAGS   = -L../util -L../nifti $(RAPID_LIB_PATH) $(ZLIB_LIB_PATH) $(SYS_LDFLAGS) $(LDFLAGS_ALL)
 SRCS= seq_track_gen.cpp tracker.cpp main.cpp
 OBJS = $(SRCS:%.cpp=%.o)

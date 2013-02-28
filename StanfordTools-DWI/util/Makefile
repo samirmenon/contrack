@@ -3,7 +3,7 @@
 include ../Makefile.definitions
 
 OUTPUT_DIR = .
-CFLAGS += -O5 $(RAPID_INCLUDE_PATH) -I../nifti -I. $(SYS_CXXFLAGS)
+CFLAGS += -O0 $(RAPID_INCLUDE_PATH) -I../nifti -I. $(SYS_CXXFLAGS)
 SRCS =  DTITractParamsFile.cpp  DTIVolumeIO.cpp DTIFilterPathwayScalar.cpp DTIFilterAlgorithm.cpp\
 	DTIRandomSeedGenerator.cpp DTIRandomSeedGeneratorMask.cpp \
 	DTIPathwayInterface.cpp DTIPathway.cpp DTIPathwayFactory.cpp \
@@ -23,7 +23,7 @@ $(TARGET) : ${OBJS}
 	${AR} $@ ${OBJS}
 
 .cpp.o: $*.cpp Makefile
-	$(CPP) $(CFLAGS) -c $*.cpp -o $*.o
+	$(CPP) $(CFLAGS) -c -g -ggdb $*.cpp -o $*.o
 
 clean:
 	rm -rf $(TARGET)
