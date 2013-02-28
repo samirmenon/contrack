@@ -67,6 +67,5 @@ figure(1); hold off; grid on; axis equal; axis tight;
 
 %% Now score the path.
 tmpStructural = dwiData.vol(:,:,:,1,1);
-scores = contrack_score(fg, dt6, fib2voxXform, tmpStructural,  tmpStructural.*0 + 1);
-
+[scores unstable] = contrack_score(fg, dt6, fib2voxXform, tmpStructural,  tmpStructural.*0 + 1);
 
