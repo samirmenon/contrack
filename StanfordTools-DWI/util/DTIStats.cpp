@@ -289,7 +289,7 @@ DTIStats::scorePathway(DTIPathwayInterface *pathway, float lengthParam, float sm
     voiVol = NULL;
   else
     voiVol = tData->_voiMaskVol;
-    
+  // This tests whether the path is in the ROI or steps outside (score = 0 for out)
   log_score += DTIStats::computeLogScoreAbsorption( pathway, 
   						    -1, 
   						    tempStats,
@@ -300,7 +300,7 @@ DTIStats::scorePathway(DTIPathwayInterface *pathway, float lengthParam, float sm
 						    tData->_stop_voi,
 						    bReportInf );
   log_score += lengthParam*(pathway->getNumPoints()-2);
-
+  //This computes the log prior score p(s)
   if( log_score > DTIMath::float_neg_inf())
     log_score += DTIStats::computeLogScorePrior( pathway, 
 						 -1, 
@@ -308,7 +308,7 @@ DTIStats::scorePathway(DTIPathwayInterface *pathway, float lengthParam, float sm
 						 smoothParam, 
 						 tData->_params->angleCutoff,
 						 bReportInf );
-
+  //This computes the log likelihood p(D|s)
   if( log_score > DTIMath::float_neg_inf())
     log_score += DTIStats::computeLogScoreLikelihood( pathway, 
 						      -1, 
