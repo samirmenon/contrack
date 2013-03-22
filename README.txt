@@ -8,5 +8,5 @@ J Vis July 29, 2008 8(9): 15; doi:10.1167/8.9.15
 
 This repository contains the original contrack implementation as well as a Matlab reimplementation.
 
-StanfordTools-DWI : C++ Contrack implementation
+StanfordTools-DWI : C++ Contrack implementation (math in DTIStats.cpp)
 src : Matlab Contrack implementation
