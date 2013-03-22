@@ -36,15 +36,13 @@ scores = zeros(n_fibers,1);
 algo_unstable = zeros(n_fibers,1);
 
 % Compute the Bingham distribution constants
-% NOTE TODO : Get these from somewhere.
-C =1;               % Fix this
-CL = 1;             % Fix this
+C =1;               % Normalizing constant. NOTE TODO : Get this from the user.
 sigmaM = pi*14/180; % User param. From paper (pg. 7 col. 2, para 1)
 eta = .175;         % User param. From paper (pg. 7 col. 2, para 2)
 
 % Compute the Watson distribution constants
-sigmaC = 1; % Angular dispersion
-CW = 1;     % Normalizing constant
+CW = 1;     % Normalizing constant. NOTE TODO : Get this from the user.
+sigmaC = 1; % Angular dispersion 
 lambda = exp(-2); % User length scoring param. From paper (pg. 7 col. 2, para 3)
 loglambda = -2;
 angleCutoff = 2.26;% radians = 129.488462 degrees
@@ -70,8 +68,8 @@ for f_ctr=1:n_fibers/100,
   %For each tangent vector along the length of the fiber
   for j=1:size(fgftan,2),
     % Compute the score for the tangent
-    pdt = ctrBinghamScore(fgftan(:,j), tensors{j+1}.D, C, CL, sigmaM, eta );
-    logpdt = ctrLogBinghamScore(fgftan(:,j), tensors{j+1}.D, C, CL, sigmaM, eta );
+    pdt = ctrBinghamScore(fgftan(:,j), tensors{j+1}.D, C, sigmaM, eta );
+    logpdt = ctrLogBinghamScore(fgftan(:,j), tensors{j+1}.D, C, sigmaM, eta );
     % Multiply the estimates for this point
     pds = pds * pdt;
     logpds = logpds + logpdt;
@@ -82,7 +80,7 @@ for f_ctr=1:n_fibers/100,
   if((pds == 0) && (logpds == -Inf)), scores(f_ctr) = 0; continue; end;
   
   % Stage 2: Compute p(s) = pend(s1)*pend(sn) Π_{i=1:n} [ p(Di | ti) ]
-  % Get the roi values along the fiber path (used in computing ps).
+  % Get the roi values along the fiber path (used in computing p).
   roi = ctrExtractROIAlongPath(fgf, dwiROI, fib2voxXform);
   % Make sure the fiber starts and ends in the ROI.
   pends1 = roi(1);
