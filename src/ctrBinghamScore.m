@@ -1,4 +1,4 @@
-function [ bhamScore ] = ctrBinghamScore(t, D, C, CL, sigmaM, eta )
+function [ bhamScore ] = ctrBinghamScore(t, D, C, sigmaM, eta )
 %CTBINGHAMSCORE Computes the Bingham score at a point on a fiber tract
 %  NOTE TODO : Replace cryptic argument names with descriptive ones.
 %  Arguments:
@@ -6,7 +6,6 @@ function [ bhamScore ] = ctrBinghamScore(t, D, C, CL, sigmaM, eta )
 %   D: The diffusion tensor at the point along a tract
 %   C: C(σ3, σ2). The normalizing constant that ensures the Bingman
 %      distribution integrates to 1 over the unit sphere at this point.
-%   CL: Tensor linearity index
 %   sigmaM: Dispersion parameter for the dataset
 %   eta: User parameter that modulates the dispersion factor.
 %  
@@ -19,9 +18,17 @@ function [ bhamScore ] = ctrBinghamScore(t, D, C, CL, sigmaM, eta )
 % Compute the eigenvectors and eigenvalues of the diffusion tensor
 [v d] = eigs(D);
 
+% CL: Tensor linearity index = abs(eig1 - eig2) / sum(eigs);
+% Right-2nd para on page 4 of Contrack J'Vision 2008.
+CL = abs(d(1,1) - d(2,2)) / trace(d);
+
 % Compute delta = 100deg / (1+ exp( - (eta - CL) / 0.015 ) );
-% SM : Update. We move to radians instead of degrees.
-delta = (100 * pi/180) / ( 1 + exp(- (eta - CL) / 0.015) );
+% SM : Do not move to radians instead of degrees. Original cpp is not
+% implemented with SI units.
+% In cpp file:
+% double linshape_ds = uniform_s / (1+exp(-(linearityMidCl-p.fCl)*10/linearityWidthCl));
+% linearityMidCl = 0.174;  linearityWidthCl = .174 (differs from paper)
+delta = (100) / ( 1 + exp(- (eta - CL) / 0.015) ); % 100 is in degrees
 
 % Compute the term for eigenvector 3
 sigma3star = d(3,3) / ( d(2,2) + d(3,3) ) * delta;
@@ -38,4 +45,3 @@ t2 = t2 / sin(sigma2);
 bhamScore = C* exp( -(t3*t3) - (t2*t2));
 
 end
-
