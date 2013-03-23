@@ -1,4 +1,4 @@
-function [ tensors ] = ctrExtractDWITensorsAlongPath(xyzTract, dt6, fib2voxXform)
+function [ tensors valid ] = ctrExtractDWITensorsAlongPath(xyzTract, dt6, fib2voxXform)
 %CTREXTRACTDWITENSORSALONGPATH Extracts the tensors along a set of fiber
 %paths
 %   Extracts diffusion tensors along a set of pathways
@@ -14,6 +14,7 @@ function [ tensors ] = ctrExtractDWITensorsAlongPath(xyzTract, dt6, fib2voxXform
 % tensors : A struct array of tensors wrt each fiber point == tensor{i}.D
 
 tensors = [];
+valid = [];
 
 % Convert the tract's xyz coordinates (ras?) into voxel coordinates
 fibXYZ = xyzTract;
@@ -29,6 +30,12 @@ for j=1:size(fibXYZVoxNN,2),
        D(4), D(2), D(6);
        D(5), D(6), D(3)];
   tensors{j}.D = squeeze(D);
+  %Test if this is a valid tensor
+  if(min(eigs(D))<0)
+    valid(j) = 0;
+  else
+    valid(j) = 1;
+  end
 end
 
 end
