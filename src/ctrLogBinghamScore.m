@@ -1,4 +1,4 @@
-function [ logBhamScore ] = ctrLogBinghamScore(t, D, C, CL, sigmaM, eta )
+function [ logBhamScore ] = ctrLogBinghamScore(t, D, C, sigmaM, eta )
 %CTRLOGBINGHAMSCORE Computes the log Bingham score at a point on a fiber tract
 %  NOTE TODO : Replace cryptic argument names with descriptive ones.
 %  Arguments:
@@ -20,9 +20,17 @@ function [ logBhamScore ] = ctrLogBinghamScore(t, D, C, CL, sigmaM, eta )
 % Compute the eigenvectors and eigenvalues of the diffusion tensor
 [v d] = eigs(D);
 
+% CL: Tensor linearity index = abs(eig1 - eig2) / sum(eigs);
+% Right-2nd para on page 4 of Contrack J'Vision 2008.
+CL = abs(d(1,1) - d(2,2)) / trace(d);
+
 % Compute delta = 100deg / (1+ exp( - (eta - CL) / 0.015 ) );
-% SM : Update. We move to radians instead of degrees. (Check this later)
-delta = (100 * pi/180) / ( 1 + exp(- (eta - CL) / 0.015) );
+% SM : Do not move to radians instead of degrees. Original cpp is not
+% implemented with SI units.
+% In cpp file:
+% double linshape_ds = uniform_s / (1+exp(-(linearityMidCl-p.fCl)*10/linearityWidthCl));
+% linearityMidCl = 0.174;  linearityWidthCl = .174 (differs from paper)
+delta = (100) / ( 1 + exp(- (eta - CL) / 0.015) ); % 100 is in degrees
 
 % Compute the term for eigenvector 3
 sigma3star = d(3,3) / ( d(2,2) + d(3,3) ) * delta;
