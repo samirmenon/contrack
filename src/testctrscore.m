@@ -34,36 +34,95 @@ roi_file = 'ltLGN_ltCalcFreesurfer_9_20110827T152126.nii.gz';
 % Local Path Segment Angle Cutoff: 130
 % ShapeFunc Params (LinMidCl,LinWidthCl,UniformS): [ 0.175, 0.15, 100 ]
 
-clear;
+% clear;
 
 %% Load fibers : Note that these are typically in ras xyz real-world coordinates.
 fiber_file = '/home/samir/Code/fmri/contrack.git/data/sub100311rd/fibers/conTrack/opticRadiation/ltLGN_ltCalcFreesurfer_9_20110827T152126_top5000_edited.pdb';
 fg = dtiLoadFiberGroup(fiber_file);
 
-%% Plot the fibers for a single fiber to make sure everything looks good.
-fib_id = 200;
-figure(1);
-plot3(fg.fibers{fib_id}(1,:),fg.fibers{fib_id}(2,:), fg.fibers{fib_id}(3,:)'.'); hold on;
-
 %% Load the diffusion tensors
 file_tensor = '/home/samir/Code/fmri/contrack.git/data/sub100311rd/dti06trilin/bin/tensors.nii.gz';
 dwiData = load_nifti(file_tensor); % Just to get the xform
-fib2voxXform = inv(dwiData.vox2ras);
+fib2voxXform = inv(dwiData.vox2ras); % Fibers are in ras
 [dt6, xformToAcpc, mmPerVoxel, fileName, desc, intentName] = dtiLoadTensorsFromNifti(file_tensor);
+
+%% Plot 3 slices so we know the rough alignment of the data planes
+dtiAxSz = size(dwiData.vol);
+dtiAxSz = dtiAxSz([1 2 3]);
+figure(1); hold on;
+% Plot the x-y plane
+x = [[0 dtiAxSz(1)];[0 0]; [dtiAxSz(3) dtiAxSz(3)]./2; [1 1]];
+x = dwiData.vox2ras * x;
+plot3(x(1,:),x(2,:),x(3,:),'r', 'LineWidth',2);
+
+x = [[0 dtiAxSz(1)]; [dtiAxSz(2) dtiAxSz(2)]; [dtiAxSz(3) dtiAxSz(3)]./2; [1 1]];
+x = dwiData.vox2ras * x;
+plot3(x(1,:),x(2,:),x(3,:),'r', 'LineWidth',2);
+
+x = [[0 0]; [0 dtiAxSz(2)]; [dtiAxSz(3) dtiAxSz(3)]./2; [1 1]];
+x = dwiData.vox2ras * x;
+plot3(x(1,:),x(2,:),x(3,:),'g', 'LineWidth',2);
+
+x = [[dtiAxSz(1) dtiAxSz(1)]; [0 dtiAxSz(2)]; [dtiAxSz(3) dtiAxSz(3)]./2; [1 1]];
+x = dwiData.vox2ras * x;
+plot3(x(1,:),x(2,:),x(3,:),'g', 'LineWidth',2);
+
+% Plot the y-z plane
+x = [[dtiAxSz(1) dtiAxSz(1)]./2;[0 0]; [0 dtiAxSz(3)]; [1 1]];
+x = dwiData.vox2ras * x;
+plot3(x(1,:),x(2,:),x(3,:),'b', 'LineWidth',2);
+
+x = [[dtiAxSz(1) dtiAxSz(1)]./2; [dtiAxSz(2) dtiAxSz(2)]; [0 dtiAxSz(3)]; [1 1]];
+x = dwiData.vox2ras * x;
+plot3(x(1,:),x(2,:),x(3,:),'b', 'LineWidth',2);
+
+x = [[dtiAxSz(1) dtiAxSz(1)]./2; [0 dtiAxSz(2)]; [0 0]; [1 1]];
+x = dwiData.vox2ras * x;
+plot3(x(1,:),x(2,:),x(3,:),'g', 'LineWidth',2);
+
+x = [[dtiAxSz(1) dtiAxSz(1)]./2; [0 dtiAxSz(2)]; [dtiAxSz(3) dtiAxSz(3)]; [1 1]];
+x = dwiData.vox2ras * x;
+plot3(x(1,:),x(2,:),x(3,:),'g', 'LineWidth',2);
+
+% Plot the x-z plane
+x = [[0 0]; [dtiAxSz(2) dtiAxSz(2)]./2; [0 dtiAxSz(3)]; [1 1]];
+x = dwiData.vox2ras * x;
+plot3(x(1,:),x(2,:),x(3,:),'b', 'LineWidth',2);
+
+x = [[dtiAxSz(1) dtiAxSz(1)]; [dtiAxSz(2) dtiAxSz(2)]./2; [0 dtiAxSz(3)]; [1 1]];
+x = dwiData.vox2ras * x;
+plot3(x(1,:),x(2,:),x(3,:),'b', 'LineWidth',2);
+
+x = [[0 dtiAxSz(1)]; [dtiAxSz(2) dtiAxSz(2)]./2; [0 0]; [1 1]];
+x = dwiData.vox2ras * x;
+plot3(x(1,:),x(2,:),x(3,:),'r', 'LineWidth',2);
+
+x = [[0 dtiAxSz(1)]; [dtiAxSz(2) dtiAxSz(2)]./2; [dtiAxSz(3) dtiAxSz(3)]; [1 1]];
+x = dwiData.vox2ras * x;
+plot3(x(1,:),x(2,:),x(3,:),'r', 'LineWidth',2);
 
 %% Plot the diffusion tensors for the path (just to see that all is well)
 % Get tensors for a path
-tensors = ctrExtractDWITensorsAlongPath(fg.fibers{fib_id}, dt6, fib2voxXform);
+figure(1); hold on;
+for fib_id=1:length(fg.fibers)/10:length(fg.fibers),
+  fib_id = round(fib_id)
+  % Plot the fibers for a single fiber to make sure everything looks good.
+  plot3(fg.fibers{fib_id}(1,:),fg.fibers{fib_id}(2,:), fg.fibers{fib_id}(3,:)'.'); hold on;
 
-for i=1:size(fg.fibers{fib_id},2),
-  % now plot the rotated ellipse
-  [x, y, z] = ctrPlotGetPointSamplesOnEllipsoid( ...
-    [fg.fibers{fib_id}(1,i),fg.fibers{fib_id}(2,i),fg.fibers{fib_id}(3,i)], tensors{i}.D);
-  sc = surf(x,y,z);
-  shading interp; alpha(0.5);
+  %Extract the tensors along the path and plot them.
+  [tensors valid] = ctrExtractDWITensorsAlongPath(fg.fibers{fib_id}, dt6, fib2voxXform);
+  for i=1:size(fg.fibers{fib_id},2),
+    % now plot the rotated ellipse
+    [x, y, z] = ctrPlotGetPointSamplesOnEllipsoid( ...
+      [fg.fibers{fib_id}(1,i),fg.fibers{fib_id}(2,i),fg.fibers{fib_id}(3,i)], tensors{i}.D);
+    sc = surf(x,y,z);
+    shading interp; alpha(0.5);
+  end
 end
 
-figure(1); hold off; grid on; axis equal; axis tight;
+figure(1); hold off;
+xlabel('X (m, ras, red)');ylabel('Y (m, ras, green)');zlabel('Z (m, ras, blue)');
+grid on; axis square;
 
 %% Now score the path.
 tmpStructural = dwiData.vol(:,:,:,1,1);
