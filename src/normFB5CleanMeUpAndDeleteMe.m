@@ -3,9 +3,9 @@ function [ returned_value ] = normFB5CleanMeUpAndDeleteMe(k1, k2, der, hes, mode
 %   This was some C++ code to integrate over a Bingham distribution on a
 %   sphere. Converted to matlab.
 %   NOTE : This code needs to be cleaned up once it is verified to work!
-% 
+%
 % HISTORY:
-% 2012.04.08 SM: wrote it.
+% 2012.04.08 SM: ported it over from old contrack c++.
 
 % Constants.
 c1 = 15.74960995;
@@ -422,7 +422,7 @@ else if (mode == 3)
     %// 	goto L400;
     %//     }
     al = k2 * -2.0;
-    if (al == 0.0) 
+    if (al == 0.0)
       ret_val = 1.0;
       der(0+1) = 1.0;
       der(1+1) = 1.0;
@@ -463,16 +463,16 @@ else if (mode == 3)
         %// 		if (n < 2) {
         %// 		    goto L44;
         %// 		}
-        if (n >= 2) 
+        if (n >= 2)
           i__2 = n - 1;
           for i=1:1:i__2, %(i = 1; i <= i__2; ++i) {
             %/* L45: */
             cf(i+1) = cfold(i - 1+1) + cfold(i+1);
           end
-          %/*    THE CF REPRESENT THE BINOMIAL COEFFICIENTS                      
+          %/*    THE CF REPRESENT THE BINOMIAL COEFFICIENTS
           % 			      BIN02560*/
         end
-
+        
         %//		L44:
         d(n - 1+1) = 0.0;
         dd(n+1) = 0.0;
@@ -491,13 +491,13 @@ else if (mode == 3)
         add0 = add;
         add = fact * d(k - 1+1);
         term = term + add;
-        if (abs(add) / term < 1e-10) 
+        if (abs(add) / term < 1e-10)
           break; %// goto L9;
         end
         %/* L12: */
       end
     end %// if level != 0
-
+    
     %//	L9:
     %/* L11: */
     ret_val = 2 / al * sqrt(de) * pi2 * term;
@@ -510,22 +510,22 @@ else if (mode == 3)
     hes(1+1) = 0.0;
     hes(3+1) = 1.0 / (k2 * 2.0 * k2);
     %/*    DER(1)=DERL                                                       BI
-% 		  N02810*/
+    % 		  N02810*/
     %/*    DER(2)=DERD                                                       BI
-% 		  N02820*/
+    % 		  N02820*/
     %/*    THIS GIVES DERIVATIVES WRT LAMBDA AND SPIKE                       BI
-% 		  N02830*/
+    % 		  N02830*/
     %/*                                                                      BI
-% 										    N02840*/
+    % 										    N02840*/
     returned_value = ret_val;
     return;
-
-   %// end if mode == 3
-
-  else 
-      %//	L400:
-      error('INVALID MODE IN BINGC');
-      returned_value = ret_val;
+    
+    %// end if mode == 3
+    
+  else
+    %//	L400:
+    error('INVALID MODE IN BINGC');
+    returned_value = ret_val;
     return;
   end
 end
