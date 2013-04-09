@@ -287,7 +287,7 @@ elseif (mode == 2)
   % 		    N01480*/
   %/*                                                                      BI
   % 			N01490*/
-  a(9+1) = besrat(c_b28, be, eps);
+  a(9+1) = besratCleanMeUpAndDeleteMe(c_b28, be, eps);
   nosuchvarexists_idx = [8:-1:1];
   for i=nosuchvarexists_idx, %(i = 8; i >= 1; --i)
     %/* L1: */
