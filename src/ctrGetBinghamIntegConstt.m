@@ -1,4 +1,4 @@
-function [ Bconstt ] = ctrGetBinghamIntegConstt( dt6 )
+function [ Bconstt ] = ctrGetBinghamIntegConstt( dt6, sampling_res )
 % CTRGENBINGHAMPATVOXELS Integrates the Bingham distribution over a sphere
 % for each voxel and computes the normalizing constant at each point.
 % 
@@ -7,6 +7,8 @@ function [ Bconstt ] = ctrGetBinghamIntegConstt( dt6 )
 % Inputs:
 %   dt6 : mrVista's diffusion data structure containing the tensors.
 % 
+% sampling_res : The integration step resolution. Default = 0.001.
+% 
 % Outuputs:
 %   Bconstt : The Bingham constant obtained by numerically integrating the
 %             Bingham function over a sphere for each voxel.
@@ -14,9 +16,14 @@ function [ Bconstt ] = ctrGetBinghamIntegConstt( dt6 )
 % HISTORY:
 % 2013.06.12 SM: wrote it.
 
+% Set default sampling resolution.
+if ~exist('sampling_res'), 
+  sampling_res=0.001; 
+end
+
 % Integrate over a unit sphere. The poles (-pi:pi) are along the RAS z axis
-dtheta = 0.001; % Sampling resolution
-dphi = 0.001;   % Sampling resolution
+dtheta = sampling_res; % Sampling resolution
+dphi = sampling_res;   % Sampling resolution
 r=1;            % Integrate over unit sphere in RAS (xyz) coordinates
 
 % Get the Bconstt value for each voxel
@@ -67,6 +74,8 @@ for i=1:1:length(Bconstt),
   Bconstt(i) = ar; % The integration constant.
   i
 end
- 
+
+%Turn the constants into a 3d data struct again to match dt6
+Bconstt = reshape(Bconstt,[size(dt6,1) size(dt6,2) size(dt6,3)]);
 end
 
