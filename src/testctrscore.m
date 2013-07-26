@@ -107,11 +107,11 @@ figure(1); hold on;
 for fib_id=1:length(fg.fibers)/10:length(fg.fibers),
   fib_id = round(fib_id)
   % Plot the fibers for a single fiber to make sure everything looks good.
-  plot3(fg.fibers{fib_id}(1,:),fg.fibers{fib_id}(2,:), fg.fibers{fib_id}(3,:)'.'); hold on;
+  plot3(fg.fibers{fib_id}(1,1:10:end),fg.fibers{fib_id}(2,1:10:end), fg.fibers{fib_id}(3,1:10:end)'.'); hold on;
 
   %Extract the tensors along the path and plot them.
   [tensors valid] = ctrExtractDWITensorsAlongPath(fg.fibers{fib_id}, dt6, fib2voxXform);
-  for i=1:size(fg.fibers{fib_id},2),
+  for i=1:10:size(fg.fibers{fib_id},2),
     % now plot the rotated ellipse
     [x, y, z] = ctrPlotGetPointSamplesOnEllipsoid( ...
       [fg.fibers{fib_id}(1,i),fg.fibers{fib_id}(2,i),fg.fibers{fib_id}(3,i)], tensors{i}.D);
@@ -123,6 +123,10 @@ end
 figure(1); hold off;
 xlabel('X (m, ras, red)');ylabel('Y (m, ras, green)');zlabel('Z (m, ras, blue)');
 grid on; axis square;
+
+%% Now generate the Bingham distribution for all voxels in the DTI dataset
+
+[dt6bham] = ctrGetBinghamIntegConstt(dt6);
 
 %% Now score the path.
 tmpStructural = dwiData.vol(:,:,:,1,1);
