@@ -1,4 +1,4 @@
-function [ scores, algo_unstable ] = contrack_score(fg, dt6, fib2voxXform, dwiSeg, dwiROI )
+function [ scores, algo_unstable ] = contrack_score(fg, dt6, fib2voxXform, dwiSeg, dwiROI, dt6bham )
 % Runs the Contrack score algorithm to rate a set of fiber tracts
 %     [ scores, algo_unstable ] = contrack_score( fg, dt6, dwiSeg, dwiROI )
 % 
@@ -18,6 +18,9 @@ function [ scores, algo_unstable ] = contrack_score(fg, dt6, fib2voxXform, dwiSe
 %            score). A matrix of size dwiSeg, where 0 indicates region to
 %            avoid and 1 indicates acceptable region.
 % 
+%  dt6bham : The Bingham integration constant for each voxel (matched to
+%            the dt6 data)
+% 
 % Outuputs:
 %   score : A vector of n * 1, with scores for each fiber, ordered using
 %           the same numerical index as the `fgGet(fg,'fibers')` input.
@@ -36,16 +39,15 @@ scores = zeros(n_fibers,1);
 algo_unstable = zeros(n_fibers,1);
 
 % Compute the Bingham distribution constants
-C =1;               % Normalizing constant. NOTE TODO : Get this from the user.
-sigmaM = pi*14/180; % User param. From paper (pg. 7 col. 2, para 1)
-eta = .175;         % User param. From paper (pg. 7 col. 2, para 2)
+% sigmaM = pi*14/180; % User param. From paper (pg. 7 col. 2, para 1)
+% eta = .175;         % User param. From paper (pg. 7 col. 2, para 2)
 
 % Compute the Watson distribution constants
 CW = 1;     % Normalizing constant. NOTE TODO : Get this from the user.
 sigmaC = 1; % Angular dispersion 
 lambda = exp(-2); % User length scoring param. From paper (pg. 7 col. 2, para 3)
 loglambda = -2;
-angleCutoff = 2.26;% radians = 129.488462 degrees
+angleCutoff = 2.26; % radians = 129.488462 degrees
 
 for f_ctr=1:n_fibers/100,
   % Algorithm to compute the score :
@@ -59,6 +61,7 @@ for f_ctr=1:n_fibers/100,
   
   % Get the diffusion tensors along the fiber path
   tensors = ctrExtractDWITensorsAlongPath(fgf,dt6,fib2voxXform);
+  bham_constts = ctrExtractBhamConstantsAlongPath(fgf,dt6bham,fib2voxXform);
 
   % Stage 1: Compute p(D|s) = Π_{i=1:n} [ p(Di | ti) ]
   % Di are diffusion tensors at each point along the pathway
@@ -68,8 +71,9 @@ for f_ctr=1:n_fibers/100,
   %For each tangent vector along the length of the fiber
   for j=1:size(fgftan,2),
     % Compute the score for the tangent
-    pdt = ctrBinghamScore(fgftan(:,j), tensors{j+1}.D, C, sigmaM, eta );
-    logpdt = ctrLogBinghamScore(fgftan(:,j), tensors{j+1}.D, C, sigmaM, eta );
+    % NOTE : We use a j+1 addressing because the tangents are diff(points)
+    pdt = ctrBinghamScore(fgftan(:,j), tensors{j+1}.D, bham_constts(j+1));
+    logpdt = ctrLogBinghamScore(fgftan(:,j), tensors{j+1}.D, bham_constts(j+1));
     % Multiply the estimates for this point
     pds = pds * pdt;
     logpds = logpds + logpdt;
