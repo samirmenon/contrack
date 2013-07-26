@@ -23,7 +23,7 @@ function [ logBhamScore ] = ctrLogBinghamScore(t, D, C)
 % 2012.12.05 SM: wrote it.
 
 sigmaM = pi*14/180; % User param. From paper (pg. 7 col. 2, para 1)
-eta = = .175; % User param. From paper (pg. 7 col. 2, para 2)
+eta = .175; % User param. From paper (pg. 7 col. 2, para 2)
 
 % Compute the eigenvectors and eigenvalues of the diffusion tensor
 [v d] = eigs(D);
