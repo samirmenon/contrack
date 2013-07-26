@@ -12,6 +12,9 @@ function [ tensors valid ] = ctrExtractDWITensorsAlongPath(xyzTract, dt6, fib2vo
 % Outputs :
 % 
 % tensors : A struct array of tensors wrt each fiber point == tensor{i}.D
+% 
+% HISTORY:
+% 2012.12.05 SM: wrote it.
 
 tensors = [];
 valid = [];
@@ -26,16 +29,9 @@ fibXYZVoxNN = round(fibXYZVox);
 for j=1:size(fibXYZVoxNN,2),
   D = dt6(fibXYZVoxNN(1,j),fibXYZVoxNN(2,j),fibXYZVoxNN(3,j),:);
   D = squeeze(D);
-  D = [D(1), D(4), D(5);
-       D(4), D(2), D(6);
-       D(5), D(6), D(3)];
-  tensors{j}.D = squeeze(D);
-  %Test if this is a valid tensor
-  if(min(eigs(D))<0)
-    valid(j) = 0;
-  else
-    valid(j) = 1;
-  end
+  [ Dtensor valid ] = ctrGetDiffusionTensorFromVec( D );
+  tensors{j}.D = squeeze(Dtensor);
+  valid(j) = valid;
 end
 
 end
