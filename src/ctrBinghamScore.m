@@ -1,19 +1,28 @@
-function [ bhamScore ] = ctrBinghamScore(t, D, C, sigmaM, eta )
+function [ bhamScore ] = ctrBinghamScore(t, D, C)
 %CTBINGHAMSCORE Computes the Bingham score at a point on a fiber tract
 %  NOTE TODO : Replace cryptic argument names with descriptive ones.
 %  Arguments:
 %   t: The tangent to the path at this point.
 %   D: The diffusion tensor at the point along a tract
-%   C: C(σ3, σ2). The normalizing constant that ensures the Bingman
+%   C: C(σ3, σ2). The normalizing constant that ensures the Bingham
 %      distribution integrates to 1 over the unit sphere at this point.
-%   sigmaM: Dispersion parameter for the dataset
-%   eta: User parameter that modulates the dispersion factor.
 %  
+%  Uses constants:
+%              σm = pi*14/180; % User param. From paper (pg. 7 col. 2, para 1)
+%              η = .175; % User param. From paper (pg. 7 col. 2, para 2)
+%
 %  Returns:
 %   bhamScore: C(σ3, σ2) exp(-(v3'*t / sin(σ3))^2 -(v2'*t / sin(σ2))^2)
-%              σi = σm + σi* 
+%              σi = σm + σi*
 %              σi* = λi' / (λi + λi') * δ
 %              δ = 100deg / ( 1 + exp(- (η - CL) / 0.015) )
+%              CL = abs(eigval_1 - eigval_2) / sum(eigval_i)
+% 
+% HISTORY:
+% 2012.12.05 SM: wrote it.
+
+sigmaM = pi*14/180; % User param. From paper (pg. 7 col. 2, para 1)
+eta = = .175; % User param. From paper (pg. 7 col. 2, para 2)
 
 % Compute the eigenvectors and eigenvalues of the diffusion tensor
 [v d] = eigs(D);
