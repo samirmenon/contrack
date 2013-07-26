@@ -35,6 +35,9 @@ for i=1:1:length(Bconstt),
     continue;
   end
   
+  % Initialize vars.
+  theta = 0; ar = 0;
+  
   % Numerical integration (simple 1st order)
   ar = 0;        % Set the integrated area to zero at the start
   t = [1 0 0];   % Unit vector along which to compute the Bham integration constt
@@ -49,8 +52,7 @@ for i=1:1:length(Bconstt),
       t(3) = r * sin(theta); % z
       
       % Patch area = height of disk * section-of-circumference
-      %            = [(r*dtheta/2) * sin(pi/2-theta)] * [dphi * r*cos(theta)]
-      dar = abs( ((r*dtheta/2) * cos(theta)) * (dphi * r*cos(theta)) );
+      dar = abs( (r*dtheta/2) * (dphi * r*cos(theta)) );
       
       % Note, we are just computing the raw function at the position t, so
       % we just pass 1 as the normalizing constant
