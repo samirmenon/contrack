@@ -126,9 +126,10 @@ grid on; axis square;
 
 %% Now generate the Bingham distribution for all voxels in the DTI dataset
 
-[dt6bham] = ctrGetBinghamIntegConstt(dt6);
+% Size of : dt6bham = [size(dt6,1) size(dt6,2) size(dt6,3)]
+[dt6bham] = ctrGetBinghamIntegConstt(dt6,0.1);
 
 %% Now score the path.
 tmpStructural = dwiData.vol(:,:,:,1,1);
-[scores unstable] = contrack_score(fg, dt6, fib2voxXform, tmpStructural,  tmpStructural.*0 + 1);
+[scores unstable] = contrack_score(fg, dt6, fib2voxXform, tmpStructural,  tmpStructural.*0 + 1, dt6bham);
 
