@@ -21,8 +21,13 @@ function [ bhamScore ] = ctrBinghamScore(t, D, C)
 % HISTORY:
 % 2012.12.05 SM: wrote it.
 
+% If t is a row vector resize it to be a col vector
+if min(size(t) == [1 3]),
+  t = t';
+end
+
 sigmaM = pi*14/180; % User param. From paper (pg. 7 col. 2, para 1)
-eta = = .175; % User param. From paper (pg. 7 col. 2, para 2)
+eta = .175; % User param. From paper (pg. 7 col. 2, para 2)
 
 % Compute the eigenvectors and eigenvalues of the diffusion tensor
 [v d] = eigs(D);
