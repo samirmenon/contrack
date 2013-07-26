@@ -2,7 +2,7 @@ function [ bham_constt ] = ctrExtractBhamConstantsAlongPath(xyzTract, dt6bham, f
 %CTREXTRACTBHAMCONSTANTSALONGPATH Extracts the Bingham integration constants 
 % along a set of fiber paths.
 % 
-%   Extracts Binghamn integration constants along a set of pathways
+%   Extracts Bingham integration constants along a set of pathways
 % 
 % Inputs :
 % 
@@ -17,8 +17,7 @@ function [ bham_constt ] = ctrExtractBhamConstantsAlongPath(xyzTract, dt6bham, f
 % HISTORY:
 % 2012.12.05 SM: wrote it.
 
-tensors = [];
-valid = [];
+bham_constt = [];
 
 % Convert the tract's xyz coordinates (ras?) into voxel coordinates
 fibXYZ = xyzTract;
