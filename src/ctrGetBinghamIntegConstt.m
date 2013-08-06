@@ -1,4 +1,4 @@
-function [ Bconstt ] = ctrGetBinghamIntegConstt( dt6, sampling_res )
+function [ Bconstt ] = ctrGetBinghamIntegConstt( dt6, sampling_res, vox_range )
 % CTRGENBINGHAMPATVOXELS Integrates the Bingham distribution over a sphere
 % for each voxel and computes the normalizing constant at each point.
 % 
@@ -30,7 +30,12 @@ r=1;            % Integrate over unit sphere in RAS (xyz) coordinates
 Bconstt = squish(dt6(:,:,:,1).*0,3);
 data = squish(dt6,3);
 
-for i=1:1:length(Bconstt),
+% Set default sampling resolution.
+if ~exist('vox_range'), 
+  vox_range = [1:1:length(Bconstt)];
+end
+
+for i=vox_range,
   % Transform the diffusion vector values into a matrix and check whether
   % it is valid (has pos eigs)
   dvec = data(i,:);
