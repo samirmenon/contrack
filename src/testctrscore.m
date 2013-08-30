@@ -127,7 +127,24 @@ grid on; axis square;
 %% Now generate the Bingham distribution for all voxels in the DTI dataset
 
 % Size of : dt6bham = [size(dt6,1) size(dt6,2) size(dt6,3)]
-[dt6bham] = ctrGetBinghamIntegConstt(dt6,0.1);
+rr = [1:1:40000];
+[dt6bham] = ctrGetBinghamIntegConstt(dt6,0.1,rr);
+
+%% Split computation
+rr = [40001:1:80000];
+[tmp] = ctrGetBinghamIntegConstt(dt6,0.1,rr);
+dt6bham(rr) = tmp(rr);
+
+%% Split computation
+save
+rr = [80001:1:120000];
+[tmp] = ctrGetBinghamIntegConstt(dt6,0.1,rr);
+dt6bham(rr) = tmp(rr);
+
+%% Split computation
+rr = [120001:1:160000];
+[tmp] = ctrGetBinghamIntegConstt(dt6,0.1,rr);
+dt6bham(rr) = tmp(rr);
 
 %% Now score the path.
 tmpStructural = dwiData.vol(:,:,:,1,1);
