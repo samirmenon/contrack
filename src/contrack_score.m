@@ -49,7 +49,7 @@ lambda = exp(-2); % User length scoring param. From paper (pg. 7 col. 2, para 3)
 loglambda = -2;
 angleCutoff = 2.26; % radians = 129.488462 degrees
 
-for f_ctr=1:n_fibers/100,
+for f_ctr=1:n_fibers,
   % Algorithm to compute the score :
   % Q(s) = p(D|s) p(s)
   %  s = Estimated pathway
