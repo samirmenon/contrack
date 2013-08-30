@@ -17,6 +17,7 @@ function [ bhamScore ] = ctrBinghamScore(t, D, C)
 %              σi* = λi' / (λi + λi') * δ
 %              δ = 100deg / ( 1 + exp(- (η - CL) / 0.015) )
 %              CL = abs(eigval_1 - eigval_2) / sum(eigval_i)
+%              (For CL, see right-2nd para on page 4 of Contrack J'Vision 2008.)
 % 
 % HISTORY:
 % 2012.12.05 SM: wrote it.
