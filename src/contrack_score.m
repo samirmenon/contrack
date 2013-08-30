@@ -46,7 +46,7 @@ algo_unstable = zeros(n_fibers,1);
 CW = 1;     % Normalizing constant. NOTE TODO : Get this from the user.
 sigmaC = 1; % Angular dispersion 
 lambda = exp(-2); % User length scoring param. From paper (pg. 7 col. 2, para 3)
-loglambda = -2;
+loglambda = -2;  % User length scoring param. From paper (pg. 7 col. 2, para 3)
 angleCutoff = 2.26; % radians = 129.488462 degrees
 
 for f_ctr=1:n_fibers,
