@@ -1,4 +1,4 @@
-function [ scores, algo_unstable ] = contrack_score(fg, dt6, fib2voxXform, dwiSeg, dwiROI, dt6bham )
+function [ scores, algo_unstable ] = contrack_score(fg, dt6, fib2voxXform, dwiSeg, dwiROI, dt6bham, dt6wat )
 % Runs the Contrack score algorithm to rate a set of fiber tracts
 %     [ scores, algo_unstable ] = contrack_score( fg, dt6, dwiSeg, dwiROI )
 % 
@@ -19,6 +19,9 @@ function [ scores, algo_unstable ] = contrack_score(fg, dt6, fib2voxXform, dwiSe
 %            avoid and 1 indicates acceptable region.
 % 
 %  dt6bham : The Bingham integration constant for each voxel (matched to
+%            the dt6 data)
+% 
+%   dt6wat : The Watson integration constant for each voxel (matched to
 %            the dt6 data)
 % 
 % Outuputs:
@@ -62,6 +65,7 @@ for f_ctr=1:n_fibers,
   % Get the diffusion tensors along the fiber path
   tensors = ctrExtractDWITensorsAlongPath(fgf,dt6,fib2voxXform);
   bham_constts = ctrExtractBhamConstantsAlongPath(fgf,dt6bham,fib2voxXform);
+  wat_constts = ctrExtractBhamConstantsAlongPath(fgf,dt6wat,fib2voxXform);
 
   % Stage 1: Compute p(D|s) = Π_{i=1:n} [ p(Di | ti) ]
   % Di are diffusion tensors at each point along the pathway
@@ -98,7 +102,7 @@ for f_ctr=1:n_fibers,
   % Check: We only abort if "both" normal and log scores go to zero.
   if((ps == 0) && (logps == -Inf)), scores(f_ctr) = 0; continue; end;
   
-  %For each edge of the fiber
+  %For each tangent vector along the length of the fiber
   for j=2:size(fgf,2)-1,
     % Local angle between two edges of the tract
     segPre = (fgf(:,j) - fgf(:,j-1));
@@ -111,8 +115,9 @@ for f_ctr=1:n_fibers,
     if( thetaSeg > angleCutoff ), ps = 0; break; end;
     
     % Compute the watson score 
-    pcurve = ctrWatsonScore(CW, sigmaC, thetaSeg);
-    logpcurve = ctrLogWatsonScore(CW, sigmaC, thetaSeg);
+    % NOTE : We use a j-1 addressing because the tangents are diff(points)
+    pcurve = ctrWatsonScore(fgftan(:,j-1), tensors{j}.D, wat_constts(j), thetaSeg);
+    logpcurve = ctrLogWatsonScore(fgftan(:,j-1), tensors{j}.D, wat_constts(j), thetaSeg);
     % Compute the manual knob and wm mask
     plen = lambda * roi(j); % If the ROI is zero, this will exit.
     logplen = loglambda + log(roi(j)); % If the ROI is zero, this will exit.

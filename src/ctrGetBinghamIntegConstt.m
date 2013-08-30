@@ -1,4 +1,4 @@
-function [ Bconstt ] = ctrGetBinghamIntegConstt( dt6, sampling_res, vox_range )
+function [ Bconstt Wconstt ] = ctrGetBinghamIntegConstt( dt6, sampling_res, vox_range )
 % CTRGENBINGHAMPATVOXELS Integrates the Bingham distribution over a sphere
 % for each voxel and computes the normalizing constant at each point.
 % 
@@ -12,6 +12,8 @@ function [ Bconstt ] = ctrGetBinghamIntegConstt( dt6, sampling_res, vox_range )
 % Outuputs:
 %   Bconstt : The Bingham constant obtained by numerically integrating the
 %             Bingham function over a sphere for each voxel.
+%   Wconstt : The Watson constant obtained by numerically integrating the
+%             Watson function over a sphere for each voxel.
 % 
 % HISTORY:
 % 2013.06.12 SM: wrote it.
@@ -48,10 +50,11 @@ for i=vox_range,
   end
   
   % Initialize vars.
-  theta = 0; ar = 0;
+  theta = 0;
   
   % Numerical integration (simple 1st order)
   ar = 0;        % Set the integrated area to zero at the start
+  arw = 0;       % Set the integrated area to zero at the start
   t = [1 0 0];   % Unit vector along which to compute the Bham integration constt
   % theta = rotation along +y axis.
   % phi = rotation about +z axis
@@ -70,17 +73,26 @@ for i=vox_range,
       % we just pass 1 as the normalizing constant
       bhscore = ctrBinghamScore(t, D, 1);
       
-      dar = dar * bhscore; %At that point.
-      ar = ar + dar;
+      darb = dar * bhscore; %At that point.
+      ar = ar + darb;
+      
+      % Note, we are just computing the raw function at the position t, so
+      % we just pass 1 as the normalizing constant
+      watscore = ctrWatsonScore(t, D, 1);
+      
+      darw = dar * watscore; %At that point.
+      arw = arw + darw;
     end
   end
   
   % Set the integration constant
   Bconstt(i) = ar; % The integration constant.
+  Wconstt(i) = arw; % The integration constant.
   i
 end
 
 %Turn the constants into a 3d data struct again to match dt6
 Bconstt = reshape(Bconstt,[size(dt6,1) size(dt6,2) size(dt6,3)]);
+Wconstt = reshape(Wconstt,[size(dt6,1) size(dt6,2) size(dt6,3)]);
 end
 

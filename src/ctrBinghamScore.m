@@ -1,6 +1,5 @@
 function [ bhamScore ] = ctrBinghamScore(t, D, C)
 %CTBINGHAMSCORE Computes the Bingham score at a point on a fiber tract
-%  NOTE TODO : Replace cryptic argument names with descriptive ones.
 %  Arguments:
 %   t: The tangent to the path at this point.
 %   D: The diffusion tensor at the point along a tract
