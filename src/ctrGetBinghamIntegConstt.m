@@ -5,9 +5,9 @@ function [ Bconstt ] = ctrGetBinghamIntegConstt( dt6, sampling_res, vox_range )
 %     [ Bconstt ] = ctrGenBinghamIntegConstt( tensors )
 % 
 % Inputs:
-%   dt6 : mrVista's diffusion data structure containing the tensors.
-% 
+%          dt6 : mrVista's diffusion data structure containing the tensors.
 % sampling_res : The integration step resolution. Default = 0.001.
+%    vox_range : (Optional) Allows computing this for a subset of total vox
 % 
 % Outuputs:
 %   Bconstt : The Bingham constant obtained by numerically integrating the
