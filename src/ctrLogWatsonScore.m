@@ -8,9 +8,9 @@ function [ logWatScore ] = ctrLogWatsonScore(t, D, C, thetaSeg)
 % thetaSeg: (Optional). Returns zero of local segment angle is greater than
 %           90 degs. This is only relevant while scoring (not for computing
 %           the integration constant).
-%  
+%
 %  Returns:
-%   watScore: C(σ) exp(cos(thetaSeg)^2 / sin(σ)^2)
+%   logWatScore: C(σ) exp(cos(thetaSeg)^2 / sin(σ)^2)
 % 
 % NOTE : sigmaC is computed using the formulation for the Bingham score,
 % with the additional constraint that both tensor eigenvalues in the
@@ -20,7 +20,7 @@ function [ logWatScore ] = ctrLogWatsonScore(t, D, C, thetaSeg)
 %              σm = pi*14/180; % User param. From paper (pg. 7 col. 2, para 1)
 %              η = .175; % User param. From paper (pg. 7 col. 2, para 2)
 % 
-%   watScore: C(σ3, σ2) exp(-(v3'*t / sin(σ3))^2 -(v2'*t / sin(σ2))^2)
+%   logWatScore: C(σ3, σ2) exp(-(v3'*t / sin(σ3))^2 -(v2'*t / sin(σ2))^2)
 %              with σ3 == σ2, we have:
 %           = C(σ2, σ2) exp(-(v2'*t / sin(σ2))^2 -(v2'*t / sin(σ2))^2)
 %           = C(σ2, σ2) exp(-(2*(v2'*t)^2 / sin(σ2))^2)
@@ -40,7 +40,7 @@ end
 
 % Requires a curve of 90 degrees or less.
 if abs(thetaSeg) > pi/2,
-  watScore = 0;
+  logWatScore = 0;
 else  
   % If t is a row vector resize it to be a col vector
   if min(size(t) == [1 3]),
@@ -71,7 +71,7 @@ else
   t2 = v(:,2)'*t; % == cos(tangent to eigvec angle)
   t2 = t2 / sin(sigma2);
   
-  watScore = log(C) -2 * (t2*t2);  
+  logWatScore = log(C) -2 * (t2*t2);  
 end
 
 end
