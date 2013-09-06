@@ -2,7 +2,7 @@ function [ Bconstt Wconstt ] = ctrGetBinghamIntegConstt( dt6, sampling_res, vox_
 % CTRGENBINGHAMPATVOXELS Integrates the Bingham distribution over a sphere
 % for each voxel and computes the normalizing constant at each point.
 % 
-%     [ Bconstt ] = ctrGenBinghamIntegConstt( tensors )
+%     [ Bconstt Wconstt] = ctrGenBinghamIntegConstt( tensors )
 % 
 % Inputs:
 %          dt6 : mrVista's diffusion data structure containing the tensors.
