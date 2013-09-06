@@ -1,4 +1,4 @@
-function [ logWatScore ] = ctrLogWatsonScore(CW, sigmaC, thetaSeg)
+function [ logWatScore ] = ctrLogWatsonScore(t, D, C, thetaSeg)
 %CTRLOGWATSONSCORE Computes the Watson score at a point on a fiber tract
 %  Arguments:
 %   t: The tangent to the path at this point.
@@ -71,7 +71,7 @@ else
   t2 = v(:,2)'*t; % == cos(tangent to eigvec angle)
   t2 = t2 / sin(sigma2);
   
-  bhamScore = log(C) -2 * (t2*t2);  
+  watScore = log(C) -2 * (t2*t2);  
 end
 
 end

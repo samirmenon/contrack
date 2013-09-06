@@ -117,7 +117,8 @@ for f_ctr=1:n_fibers,
     % Compute the watson score 
     % NOTE : We use a j-1 addressing because the tangents are diff(points)
     pcurve = ctrWatsonScore(fgftan(:,j-1), tensors{j}.D, wat_constts(j), thetaSeg);
-    logpcurve = ctrLogWatsonScore(fgftan(:,j-1), tensors{j}.D, wat_constts(j), thetaSeg);
+    logpcurve = pcurve;
+    %ctrLogWatsonScore(fgftan(:,j-1), tensors{j}.D, wat_constts(j), thetaSeg);
     % Compute the manual knob and wm mask
     plen = lambda * roi(j); % If the ROI is zero, this will exit.
     logplen = loglambda + log(roi(j)); % If the ROI is zero, this will exit.

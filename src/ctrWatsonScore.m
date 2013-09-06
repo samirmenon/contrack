@@ -71,7 +71,7 @@ else
   t2 = v(:,2)'*t; % == cos(tangent to eigvec angle)
   t2 = t2 / sin(sigma2);
   
-  bhamScore = C* exp( -2*(t2*t2));  
+  watScore = C* exp( -2*(t2*t2));  
 end
 
 end
