@@ -30,6 +30,7 @@ r=1;            % Integrate over unit sphere in RAS (xyz) coordinates
 
 % Get the Bconstt value for each voxel
 Bconstt = squish(dt6(:,:,:,1).*0,3);
+Wconstt = squish(dt6(:,:,:,1).*0,3);
 data = squish(dt6,3);
 
 % Set default sampling resolution.
@@ -46,6 +47,7 @@ for i=vox_range,
   % Don't care about the invalid voxels
   if(valid == 0)
     Bconstt(i) = NaN;
+    Wconstt(i) = NaN;
     continue;
   end
   
