@@ -1,4 +1,4 @@
-function [ scores, algo_unstable ] = contrack_score(fg, dt6, fib2voxXform, dwiSeg, dwiROI, dt6bham, dt6wat )
+function [ scores, algo_unstable ] = contrack_score(fg, dt6, fib2voxXform, dwiROI, dt6bham, dt6wat )
 % Runs the Contrack score algorithm to rate a set of fiber tracts
 %     [ scores, algo_unstable ] = contrack_score( fg, dt6, dwiSeg, dwiROI )
 % 
@@ -11,11 +11,8 @@ function [ scores, algo_unstable ] = contrack_score(fg, dt6, fib2voxXform, dwiSe
 % 
 %   dt6 : The diffusion weighted data
 % 
-%   dwiSeg : A co-registered segmented volume. Could be higher res than the
-%            diffusion data. Contains the ROI.
-% 
 %   dwiROI : An ROI to avoid (passing this will give the fiber a zero
-%            score). A matrix of size dwiSeg, where 0 indicates region to
+%            score). Size of full dwi data, where 0 indicates region to
 %            avoid and 1 indicates acceptable region.
 % 
 %  dt6bham : The Bingham integration constant for each voxel (matched to
