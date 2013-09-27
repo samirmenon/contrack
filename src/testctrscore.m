@@ -150,5 +150,5 @@ dt6wat(rr) = tmpw(rr);
 
 %% Now score the path.
 tmpStructural = dwiData.vol(:,:,:,1,1);
-[scores unstable] = contrack_score(fg, dt6, fib2voxXform, tmpStructural,  tmpStructural.*0 + 1, dt6bham, dt6wat);
+[scores unstable] = contrack_score(fg, dt6, fib2voxXform,  tmpStructural.*0 + 1, dt6bham, dt6wat);
 
