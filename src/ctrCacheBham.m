@@ -69,6 +69,9 @@ for i=1:n,
       % theta = rotation along +y axis.
       % phi = rotation about +z axis
       % theta = 0, phi = 0 => x axis
+      disp(['Integrating Bham for ' num2str([eigval(i) eigval(j) eigval(k)]) ':']);
+      iter = 1;
+      iter10pc = round(round(2*pi/dtheta)/10);
       for theta = -pi:dtheta:pi, %From lower pole to upper pole
         for phi = 0:dphi:2*pi, %Integrate over a disk sliced moving along the pole
           % Direction along which to compute the BHAM score
@@ -86,11 +89,18 @@ for i=1:n,
           darb = dar * bhscore; %At that point.
           ar = ar + darb;
         end
+        iter = iter+1;
+        if(rem(iter,iter10pc)==0)
+          fprintf(' +10pc');
+        end
       end
       
       % Set the Bingham constant to the integrated area.
       BConstt(i,j,k) = ar;
+      disp(['Saving Bham for ' num2str([i j k])]);
+      save(filename, 'BConstt','BEigs');
     end
+    j
   end
 end
 
