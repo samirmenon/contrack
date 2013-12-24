@@ -48,7 +48,7 @@ if notDefined('max_eig'),
 end
 
 if notDefined('sge_path'),
-    sge_path='/hsgs/u/arokem/tmp/'; 
+    sge_path='/hsgs/u/arokem/tmp/bham/';
 end
 
 
@@ -88,8 +88,8 @@ for i=1:n,
             % Call out to helper function
             cmd_str = '[t, ar] = ctrBinghamGrid(t, D, ar, eigval, r, dtheta, dphi, i, j, k)';
             if sge
-                name = sprintf('job_bingham_%s_%s_%s', i, j, k); 
-                filename = sprintf('%s/BinghamConstants_%s_%s_%s.mat', sge_path, i, j, k);
+                name = sprintf('job_bingham_%s_%s_%s', num2str(i), num2str(j), num2str(k));
+                filename = sprintf('%s/BinghamConstants_%s_%s_%s.mat', sge_path, num2str(i), num2str(j), num2str(k));
                 cmd_str = [cmd_str ' ' filename];
                 % We want to pass the namespace in with this
                 sgerun2(cmd_str, name, true);
@@ -97,12 +97,15 @@ for i=1:n,
                 eval(cmd_str);
             end
             
-            % Set the Bingham constant to the integrated area.
-            BConstt(i,j,k) = ar;
-            disp(['Saving Bham for ' num2str([i j k])]);
-            save(filename, 'BConstt','BEigs');
-            toc
-            keyboard
+            % If we are not sending this to the grid, we will overwrite the
+            % file we have in every iteration:
+            if ~sge
+                % Set the Bingham constant to the integrated area.
+                BConstt(i,j,k) = ar;
+                disp(['Saving Bham for ' num2str([i j k])]);
+                save(filename, 'BConstt','BEigs');
+            end
+            
         end
     end
 end
