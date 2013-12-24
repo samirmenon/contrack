@@ -27,27 +27,27 @@ function [ ] = ctrCacheBhamBinned( filename, sample_res_sph, sample_res_eig, min
 % 2013.09.22 SM: wrote it.
 
 % Set default sampling resolution.
-if ~exist('filename'),
+if notDefined('filename'),
     filename='BinghamConstants.mat';
 end
 
-if ~exist('sample_res_sph'),
+if notDefined('sample_res_sph'),
     sample_res_sph=0.001;
 end
 
-if ~exist('sample_res_eig'),
+if notDefined('sample_res_eig'),
     sample_res_eig=0.01;
 end
 
-if ~exist('min_eig'),
+if notDefined('min_eig'),
     min_eig=sample_res_eig;
 end
 
-if ~exist('max_eig'),
+if notDefined('max_eig'),
     max_eig=3; % Value provided by Ariel Rokem. Covers most dwi data at 3T.
 end
 
-if ~exist('sge_path'),
+if notDefined('sge_path'),
     sge_path='/hsgs/u/arokem/tmp/'; 
 end
 
