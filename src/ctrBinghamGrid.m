@@ -29,8 +29,6 @@ for theta = -pi:dtheta:pi, %From lower pole to upper pole
     end
 end
 
-end
-
 if exist('filename')
     save(filename, 'ar', 'eigval', 'i', 'j', 'k');
 end
