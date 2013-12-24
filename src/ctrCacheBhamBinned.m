@@ -89,7 +89,7 @@ for i=1:n,
             if sge
                 name = sprintf('bham_%s_%s_%s', num2str(i), num2str(j), num2str(k));
                 filename = sprintf('%s/BinghamConstants_%s_%s_%s.mat', sge_path, num2str(i), num2str(j), num2str(k));
-                cmd_str = sprintf('[t, ar] = ctrBinghamGrid(t, D, ar, eigval, r, dtheta, dphi, i, j, k, %s)', filename);
+                cmd_str = sprintf('[t, ar] = ctrBinghamGrid(t, D, ar, eigval, r, dtheta, dphi, i, j, k, "%s")', filename);
                 % We want to pass the namespace in with this
                 sgerun2(cmd_str, name, true);
             else
