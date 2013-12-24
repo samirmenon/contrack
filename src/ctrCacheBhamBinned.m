@@ -59,18 +59,21 @@ r=1;            % Integrate over unit sphere in RAS (xyz) coordinates
 
 eigval = min_eig:sample_res_eig:max_eig;
 n = length(eigval);
-BEigs = zeros(n,n,n,3);
-BConstt = zeros(n,n,n);
 
+% Allocate these guys, unless you are using the SGE:
+if ~sge
+    BEigs = zeros(n,n,n,3);
+    BConstt = zeros(n,n,n);
+end
 for i=1:n,
     for j=1:n,
         for k=1:n,
-            tic
-            % Three eigenvalues to be used
-            BEigs(i,j,k,1) = eigval(i);
-            BEigs(i,j,k,2) = eigval(j);
-            BEigs(i,j,k,3) = eigval(k);
-            
+            if ~sge
+                % Three eigenvalues to be used
+                BEigs(i,j,k,1) = eigval(i);
+                BEigs(i,j,k,2) = eigval(j);
+                BEigs(i,j,k,3) = eigval(k);
+            end
             D = eye(3);
             D(1,1) = eigval(i);
             D(2,2) = eigval(j);
