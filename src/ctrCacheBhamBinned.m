@@ -86,15 +86,14 @@ for i=1:n,
             % phi = rotation about +z axis
             % theta = 0, phi = 0 => x axis
             % Call out to helper function
-            cmd_str = '[t, ar] = ctrBinghamGrid(t, D, ar, eigval, r, dtheta, dphi, i, j, k)';
             if sge
                 name = sprintf('job_bingham_%s_%s_%s', num2str(i), num2str(j), num2str(k));
                 filename = sprintf('%s/BinghamConstants_%s_%s_%s.mat', sge_path, num2str(i), num2str(j), num2str(k));
-                cmd_str = [cmd_str ' ' filename];
+                cmd_str = sprintf('[t, ar] = ctrBinghamGrid(t, D, ar, eigval, r, dtheta, dphi, i, j, k, %s)', filename);
                 % We want to pass the namespace in with this
                 sgerun2(cmd_str, name, true);
             else
-                eval(cmd_str);
+                [t, ar] = ctrBinghamGrid(t, D, ar, eigval, r, dtheta, dphi, i, j, k);
             end
             
             % If we are not sending this to the grid, we will overwrite the
