@@ -31,9 +31,9 @@ sigmaM = pi*14/180; % User param. From paper (pg. 7 col. 2, para 1)
 eta = .175; % User param. From paper (pg. 7 col. 2, para 2)
 
 %If the input D was a cell array, assume that it is {eigvals, eigvecs}:
-if iscell(D)
-    v = D{1};
-    d = D{2};
+if length(size(D))==3
+    v = D(1);
+    d = D(2);
 else
     % Otherwise, if it's a matrix, compute the eigenvectors and eigenvalues of the diffusion tensor
     [v d] = eigs(D);
