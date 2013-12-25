@@ -7,7 +7,7 @@ iter = 1;
 iter10pc = round(round(2*pi/dtheta)/10);
 % We provide ctrBinghamScore with the solution to the eigenvalue decomp
 % problem:
-D = {diag([eigval(i) eigval(j) eigval(k)]), eye(3)'};
+D = [diag([eigval(i) eigval(j) eigval(k)]; eye(3)'];
 % Unit vector relative to which integration proceeds, we'll muck with it
 % below:
 t = [1, 0, 0];
