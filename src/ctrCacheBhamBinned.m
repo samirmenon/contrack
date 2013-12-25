@@ -55,19 +55,19 @@ end
 % Integrate over a unit sphere. The poles (-pi:pi) are along the RAS z axis
 dtheta = sample_res_sph; % Sampling resolution
 dphi = sample_res_sph;   % Sampling resolution
-r=1;            % Integrate over unit sphere in RAS (xyz) coordinates
 
 eigval = min_eig:sample_res_eig:max_eig;
 n = length(eigval);
 
 % Allocate these guys, unless you are using the SGE:
 if ~sge
-    BEigs = zeros(n,n,n,3);
-    BConstt = zeros(n,n,n);
+    BEigs = zeros(n, n, n, 3);
+    BConstt = zeros(n, n, n);
 end
+
 for i=1:n,
-    for j=1:n,
-        for k=1:n,
+    for j=i:n,
+        for k=j:n,
             if ~sge
                 % Three eigenvalues to be used
                 BEigs(i,j,k,1) = eigval(i);
@@ -81,10 +81,7 @@ for i=1:n,
             
             % Numerical integration (simple 1st order)
             % Pre-computes the integration constants for Bingham
-            theta = 0;
             ar = 0;        % Set the integrated area to zero at the start
-            arw = 0;       % Set the integrated area to zero at the start
-            t = [1 0 0];   % Unit vector along which to compute the Bham integration constt
             % theta = rotation along +y axis.
             % phi = rotation about +z axis
             % theta = 0, phi = 0 => x axis
@@ -92,11 +89,11 @@ for i=1:n,
             if sge
                 name = sprintf('bham_%s_%s_%s', num2str(i), num2str(j), num2str(k));
                 filename = sprintf('%s/BinghamConstants_%s_%s_%s.mat', sge_path, num2str(i), num2str(j), num2str(k));
-                cmd_str = sprintf('[t, ar] = ctrBinghamGrid(t, D, ar, eigval, r, dtheta, dphi, i, j, k, ''%s'')', filename);
+                cmd_str = sprintf('ar = ctrBinghamGrid(ar, eigval, dtheta, dphi, i, j, k, ''%s'')', filename);
                 % We want to pass the namespace in with this
                 sgerun2(cmd_str, name, true);
             else
-                [t, ar] = ctrBinghamGrid(t, D, ar, eigval, r, dtheta, dphi, i, j, k);
+                ar = ctrBinghamGrid(ar, eigval, dtheta, dphi, i, j, k);
             end
             
             % If we are not sending this to the grid, we will overwrite the
@@ -107,10 +104,10 @@ for i=1:n,
                 disp(['Saving Bham for ' num2str([i j k])]);
                 save(filename, 'BConstt','BEigs');
             end
-            
         end
     end
 end
+
 
 save(filename, 'BConstt','BEigs');
 
