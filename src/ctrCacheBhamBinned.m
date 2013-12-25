@@ -19,7 +19,9 @@ function [ ] = ctrCacheBhamBinned( filename, sample_res_sph, sample_res_eig, min
 % sample_res_eig : (Optional) The eigenvalue resolution. Default = 0.01.
 %        min_eig : (Optional) The min eigenvalue. Default = sample_res_eig.
 %        max_eig : (Optional) The max eigenvalue. Default = 3.
-%
+%        sge     : (Optional) Whether to run this on an SGE configuration
+%        sge_path: (Optional) Full path to a location in which to save
+%        outputs from the calculation
 % Outputs:
 %     A file with the constants for the specified range.
 %
