@@ -26,9 +26,9 @@ for i=is:1:max(i0),
         bhamData(d.i,d.j,d.k,4) = d.e3;
       end
     end
-    save(sprintf(outfile,ct),'bhamData');
-    ct = ct+1;
   end
+  save(sprintf(outfile,ct),'bhamData');
+  ct = ct+1;
 end
 
 save('BhamDataFin.mat','bhamData');
