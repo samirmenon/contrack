@@ -1,4 +1,4 @@
-function [ logWatScore ] = ctrLogWatsonScore(t, D, C, thetaSeg)
+function [ logWatScore ] = ctrLogWatsonScore(t, D, CBcached, thetaSeg)
 %CTRLOGWATSONSCORE Computes the Watson score at a point on a fiber tract
 %  Arguments:
 %   t: The tangent to the path at this point.
