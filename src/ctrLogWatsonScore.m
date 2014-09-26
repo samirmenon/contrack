@@ -3,11 +3,17 @@ function [ logWatScore ] = ctrLogWatsonScore(t, D, C, thetaSeg)
 %  Arguments:
 %   t: The tangent to the path at this point.
 %   D: The diffusion tensor at the point along a tract
-%   C: C(σ3, σ2). The normalizing constant that ensures the Bingham
-%      distribution integrates to 1 over the unit sphere at this point.
+%   CBcached : The cached normalizing constants
 % thetaSeg: (Optional). Returns zero of local segment angle is greater than
 %           90 degs. This is only relevant while scoring (not for computing
 %           the integration constant).
+%
+%  Uses constants:
+%   σm = pi*14/180; % User param. From paper (pg. 7 col. 2, para 1)
+%   η = .175; % User param. From paper (pg. 7 col. 2, para 2)
+%   C: C(σ3, σ2). The normalizing constant that ensures the Bingham
+%      distribution integrates to 1 over the unit sphere at this point.
+%      Cached...
 %
 %  Returns:
 %   logWatScore: C(σ) exp(cos(thetaSeg)^2 / sin(σ)^2)
@@ -52,6 +58,18 @@ else
   
   % Compute the eigenvectors and eigenvalues of the diffusion tensor
   [v d] = eigs(D);
+  
+  % Extract C from the cached values.
+  % The format is [e1 e2 e3 C]
+  CBtmp = CBcached(:,[1 2 3]);
+  CBtmp(:,1) = CBtmp(:,1) - d(1,1);
+  CBtmp(:,2) = CBtmp(:,2) - d(2,2);
+  CBtmp(:,3) = CBtmp(:,3) - d(3,3);
+  twoNorm = sqrt(sum(abs(CBtmp).^2,2)); %# The two-norm of each column
+  % Note : The min value is the residual eigenvalue difference between the
+  % desired C and the cached C from the dataset.
+  [~, tnidx] = min(twoNorm);
+  C = CBcached(tnidx,4);
   
   % CL: Tensor linearity index = abs(eig1 - eig2) / sum(eigs);
   % Right-2nd para on page 4 of Contrack J'Vision 2008.
