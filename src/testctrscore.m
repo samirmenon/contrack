@@ -103,8 +103,11 @@ plot3(x(1,:),x(2,:),x(3,:),'r', 'LineWidth',2);
 
 %% Plot the diffusion tensors for the path (just to see that all is well)
 % Get tensors for a path
-figure(1); hold on;
-for fib_id=1:length(fg.fibers)/10:length(fg.fibers),
+fignum = figure('XVisual',...
+  '0x27 (TrueColor, depth 24, RGB mask 0xff0000 0xff00 0x00ff)',...
+  'Color',[1 1 1]);
+hold on;
+for fib_id=1:length(fg.fibers)/40:length(fg.fibers),
   fib_id = round(fib_id)
   % Plot the fibers for a single fiber to make sure everything looks good.
   plot3(fg.fibers{fib_id}(1,1:10:end),fg.fibers{fib_id}(2,1:10:end), fg.fibers{fib_id}(3,1:10:end)'.'); hold on;
@@ -120,35 +123,15 @@ for fib_id=1:length(fg.fibers)/10:length(fg.fibers),
   end
 end
 
-figure(1); hold off;
-xlabel('X (m, ras, red)');ylabel('Y (m, ras, green)');zlabel('Z (m, ras, blue)');
+figure(fignum); hold off;
+xlabel('X (mm, ras, red)');ylabel('Y (mm, ras, green)');zlabel('Z (mm, ras, blue)');
 grid on; axis square;
 
-%% Now generate the Bingham distribution for all voxels in the DTI dataset
-% Size of : dt6bham = [size(dt6,1) size(dt6,2) size(dt6,3)]
-rr = [1:1:40000];
-[dt6bham dt6wat] = ctrGetBinghamIntegConstt(dt6,0.1,rr);
-
-%% Split computation
-rr = [40001:1:80000];
-[tmp tmpw] = ctrGetBinghamIntegConstt(dt6,0.1,rr);
-dt6bham(rr) = tmp(rr);
-dt6wat(rr) = tmpw(rr);
-
-%% Split computation
-save
-rr = [80001:1:120000];
-[tmp tmpw] = ctrGetBinghamIntegConstt(dt6,0.1,rr);
-dt6bham(rr) = tmp(rr);
-dt6wat(rr) = tmpw(rr);
-
-%% Split computation
-rr = [120001:1:160000];
-[tmp tmpw] = ctrGetBinghamIntegConstt(dt6,0.1,rr);
-dt6bham(rr) = tmp(rr);
-dt6wat(rr) = tmpw(rr);
+%% Now load the cached Bingham constants
+% Note that the stored values are surface integrals. Div by 4*pi
+CBcached = load('../data/bhamConst-AllEigs-01-002-Full.txt')./4*pi;
 
 %% Now score the path.
 tmpStructural = dwiData.vol(:,:,:,1,1);
-[scores unstable] = contrack_score(fg, dt6, fib2voxXform,  tmpStructural.*0 + 1, dt6bham, dt6wat);
+[scores unstable] = contrack_score(fg, dt6, fib2voxXform,  tmpStructural.*0 + 1, CBcached);
 
