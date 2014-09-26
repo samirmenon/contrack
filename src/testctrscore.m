@@ -5,15 +5,22 @@
 % ConTrack : Finding the most likely pathways between brain regions using
 % diffusion tractography. Sherbondy, Dougherty, Ben-Shachar, Napel,
 % Wandell, J' Vision 2008. 8(9):15, 1-16.
-% 
+%
+% We test against vistadata/conTrack.  Put vistadata on your path.
+%
 % Author : SM <smenon@stanford.edu>
 % Date   : 2013-02-08
+%
+
 
 % Parameters from the standard run:
 % 
 % Params: 1
 % Image Directory: /home/samir/Code/fmri/contrack.git/data/sub100311rd/dti06trilin/bin/ 
-image_dir = '/home/samir/Code/fmri/contrack.git/data/sub100311rd/dti06trilin/bin/';
+% image_dir = '/home/samir/Code/fmri/contrack.git/data/sub100311rd/dti06trilin/bin/';
+conTrack_dir = fullfile(mrvDataRootPath,'conTrack','data');
+image_dir = fullfile(conTrack_dir,'sub100311rd','dti06trilin','bin');
+
 % WM/GM Mask Filename: wmProb.nii.gz
 wmgm_mask = 'wmProb.nii.gz';
 % PDF Filename: pdf.nii.gz
@@ -37,13 +44,16 @@ roi_file = 'ltLGN_ltCalcFreesurfer_9_20110827T152126.nii.gz';
 % clear;
 
 %% Load fibers : Note that these are typically in ras xyz real-world coordinates.
-fiber_file = '/home/samir/Code/fmri/contrack.git/data/sub100311rd/fibers/conTrack/opticRadiation/ltLGN_ltCalcFreesurfer_9_20110827T152126_top5000_edited.pdb';
+fiber_file = fullfile(conTrack_dir,'sub100311rd','fibers','conTrack','opticRadiation','ltLGN_ltCalcFreesurfer_9_20110827T152126_top5000_edited.pdb');
+exist(fiber_file,'file')
+
 fg = dtiLoadFiberGroup(fiber_file);
 
 %% Load the diffusion tensors
-file_tensor = '/home/samir/Code/fmri/contrack.git/data/sub100311rd/dti06trilin/bin/tensors.nii.gz';
-dwiData = load_nifti(file_tensor); % Just to get the xform
-fib2voxXform = inv(dwiData.vox2ras); % Fibers are in ras
+file_tensor = fullfile(conTrack_dir,'sub100311rd','dti06trilin','bin','tensors.nii.gz');
+dwiData = niftiRead(file_tensor); % Just to get the xform
+
+fib2voxXform = inv(dwiData.qto_xyz); % Fibers are in ras
 [dt6, xformToAcpc, mmPerVoxel, fileName, desc, intentName] = dtiLoadTensorsFromNifti(file_tensor);
 
 %% Plot the diffusion tensors for the path (just to see that all is well)
@@ -74,9 +84,25 @@ grid on; axis square;
 
 %% Now load the cached Bingham constants
 % Note that the stored values are surface integrals. Div by 4*pi
-CBcached = load('../data/bhamConst-AllEigs-01-002-Full.txt')./4*pi;
+fName = fullfile(contrackRootPath,'data','bhamConst-AllEigs-01-002-Full.txt');
+CBcached = load(fName);
+CBcached(:,4) = CBcached(:,4) ./ 4*pi;
+
+% In the future, shift to a Matlab file.
+save BinghamC CBcached
 
 %% Now score the path.
-tmpStructural = dwiData.vol(:,:,:,1,1);
-[scores unstable] = contrack_score(fg, dt6, fib2voxXform,  tmpStructural.*0 + 1, CBcached);
+tmpStructural = dwiData.data(:,:,:,1,1);
+nFibers = fgGet(fg,'n fibers');
+
+lst = zeros(1,nFibers);
+lst(1:1000:nFibers) = 1;
+lst = logical(lst)
+
+fg2 = fgExtract(fg,lst,'keep');
+
+%%
+tic
+[scores unstable] = contrack_score(fg2, dt6, fib2voxXform,  tmpStructural.*0 + 1, CBcached);
+toc
 
