@@ -1,4 +1,4 @@
-function [ scores, algo_unstable ] = contrack_score(fg, dt6, fib2voxXform, dwiROI, dt6bham, dt6wat )
+function [ scores, algo_unstable ] = contrack_score(fg, dt6, fib2voxXform, dwiROI, CBcached)
 % Runs the Contrack score algorithm to rate a set of fiber tracts
 %     [ scores, algo_unstable ] = contrack_score( fg, dt6, dwiSeg, dwiROI )
 % 
@@ -14,12 +14,8 @@ function [ scores, algo_unstable ] = contrack_score(fg, dt6, fib2voxXform, dwiRO
 %   dwiROI : An ROI to avoid (passing this will give the fiber a zero
 %            score). Size of full dwi data, where 0 indicates region to
 %            avoid and 1 indicates acceptable region.
-% 
-%  dt6bham : The Bingham integration constant for each voxel (matched to
-%            the dt6 data)
-% 
-%   dt6wat : The Watson integration constant for each voxel (matched to
-%            the dt6 data)
+%
+% CBcached : The cached Bingham constants.
 % 
 % Outuputs:
 %   score : A vector of n * 1, with scores for each fiber, ordered using
@@ -61,9 +57,7 @@ for f_ctr=1:n_fibers,
   
   % Get the diffusion tensors along the fiber path
   tensors = ctrExtractDWITensorsAlongPath(fgf,dt6,fib2voxXform);
-  bham_constts = ctrExtractBhamConstantsAlongPath(fgf,dt6bham,fib2voxXform);
-  wat_constts = ctrExtractBhamConstantsAlongPath(fgf,dt6wat,fib2voxXform);
-
+  
   % Stage 1: Compute p(D|s) = Π_{i=1:n} [ p(Di | ti) ]
   % Di are diffusion tensors at each point along the pathway
   % ti are tangent vectors at each point along the pathway
@@ -73,8 +67,8 @@ for f_ctr=1:n_fibers,
   for j=1:size(fgftan,2),
     % Compute the score for the tangent
     % NOTE : We use a j+1 addressing because the tangents are diff(points)
-    pdt = ctrBinghamScore(fgftan(:,j), tensors{j+1}.D, bham_constts(j+1));
-    logpdt = ctrLogBinghamScore(fgftan(:,j), tensors{j+1}.D, bham_constts(j+1));
+    pdt = ctrBinghamScore(fgftan(:,j), tensors{j+1}.D, CBcached);
+    logpdt = ctrLogBinghamScore(fgftan(:,j), tensors{j+1}.D, CBcached);
     % Multiply the estimates for this point
     pds = pds * pdt;
     logpds = logpds + logpdt;
@@ -113,8 +107,8 @@ for f_ctr=1:n_fibers,
     
     % Compute the watson score 
     % NOTE : We use a j-1 addressing because the tangents are diff(points)
-    pcurve = ctrWatsonScore(fgftan(:,j-1), tensors{j}.D, wat_constts(j), thetaSeg);
-    logpcurve = ctrLogWatsonScore(fgftan(:,j-1), tensors{j}.D, wat_constts(j), thetaSeg);
+    pcurve = ctrWatsonScore(fgftan(:,j-1), tensors{j}.D, CBcached, thetaSeg);
+    logpcurve = ctrLogWatsonScore(fgftan(:,j-1), tensors{j}.D, CBcached, thetaSeg);
     % Compute the manual knob and wm mask
     plen = lambda * roi(j); % If the ROI is zero, this will exit.
     logplen = loglambda + log(roi(j)); % If the ROI is zero, this will exit.
