@@ -1,15 +1,18 @@
-function [ logBhamScore ] = ctrLogBinghamScore(t, D, C)
+function [ logBhamScore ] = ctrLogBinghamScore(t, D, CBcached, trace_d)
 %CTRLOGBINGHAMSCORE Computes the log Bingham score at a point on a fiber tract
 %  NOTE TODO : Replace cryptic argument names with descriptive ones.
 %  Arguments:
 %   t: The tangent to the path at this point.
 %   D: The diffusion tensor at the point along a tract
+%   CBcached : The cached normalizing constants
+%   trace_d : (optional), the trace of the eigenvector matrix of D
+%
+%  Uses constants:
+%   σm = pi*14/180; % User param. From paper (pg. 7 col. 2, para 1)
+%   η = .175; % User param. From paper (pg. 7 col. 2, para 2)
 %   C: C(σ3, σ2). The normalizing constant that ensures the Bingham
 %      distribution integrates to 1 over the unit sphere at this point.
-%  
-%  Uses constants:
-%              σm = pi*14/180; % User param. From paper (pg. 7 col. 2, para 1)
-%              η = .175; % User param. From paper (pg. 7 col. 2, para 2)
+%      Cached...
 % 
 %  Returns:
 %    bhamScore: C(σ3, σ2) exp(-(v3'*t / sin(σ3))^2 -(v2'*t / sin(σ2))^2)
@@ -22,15 +25,46 @@ function [ logBhamScore ] = ctrLogBinghamScore(t, D, C)
 % HISTORY:
 % 2012.12.05 SM: wrote it.
 
+% If t is a row vector resize it to be a col vector
+if min(size(t) == [1 3]),
+    t = t';
+end
+
 sigmaM = pi*14/180; % User param. From paper (pg. 7 col. 2, para 1)
 eta = .175; % User param. From paper (pg. 7 col. 2, para 2)
 
-% Compute the eigenvectors and eigenvalues of the diffusion tensor
-[v d] = eigs(D);
+%If the input D was a cell array, assume that it is {eigvals, eigvecs}:
+if iscell(D)
+    v = D{1};
+    d = D{2};
+else
+    % Otherwise, if it's a matrix, compute the eigenvectors and eigenvalues of the diffusion tensor
+    [v d] = eigs(D);
+end
+
+% Extract C from the cached values.
+% The format is [e1 e2 e3 C]
+CBtmp = CBcached(:,[1 2 3]);
+CBtmp(:,1) = CBtmp(:,1) - d(1,1);
+CBtmp(:,2) = CBtmp(:,2) - d(2,2);
+CBtmp(:,3) = CBtmp(:,3) - d(3,3);
+twoNorm = sqrt(sum(abs(CBtmp).^2,2)); %# The two-norm of each column
+% Note : The min value is the residual eigenvalue difference between the 
+% desired C and the cached C from the dataset.
+[~, tnidx] = min(twoNorm);
+C = CBcached(tnidx,4);
 
 % CL: Tensor linearity index = abs(eig1 - eig2) / sum(eigs);
 % Right-2nd para on page 4 of Contrack J'Vision 2008.
-CL = abs(d(1,1) - d(2,2)) / trace(d);
+
+try
+    % We use 'try/catch', because testing for the existence of a variable
+    % takes too much time:
+    CL = abs(d(1,1) - d(2,2)) / trace_d;
+catch
+    trace_d = trace(d);
+    CL = abs(d(1,1) - d(2,2)) / trace_d;
+end
 
 % Compute delta = 100deg / (1+ exp( - (eta - CL) / 0.015 ) );
 % SM : Do not move to radians instead of degrees. Original cpp is not
