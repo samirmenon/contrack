@@ -46,61 +46,6 @@ dwiData = load_nifti(file_tensor); % Just to get the xform
 fib2voxXform = inv(dwiData.vox2ras); % Fibers are in ras
 [dt6, xformToAcpc, mmPerVoxel, fileName, desc, intentName] = dtiLoadTensorsFromNifti(file_tensor);
 
-%% Plot 3 slices so we know the rough alignment of the data planes
-dtiAxSz = size(dwiData.vol);
-dtiAxSz = dtiAxSz([1 2 3]);
-figure(1); hold on;
-% Plot the x-y plane
-x = [[0 dtiAxSz(1)];[0 0]; [dtiAxSz(3) dtiAxSz(3)]./2; [1 1]];
-x = dwiData.vox2ras * x;
-plot3(x(1,:),x(2,:),x(3,:),'r', 'LineWidth',2);
-
-x = [[0 dtiAxSz(1)]; [dtiAxSz(2) dtiAxSz(2)]; [dtiAxSz(3) dtiAxSz(3)]./2; [1 1]];
-x = dwiData.vox2ras * x;
-plot3(x(1,:),x(2,:),x(3,:),'r', 'LineWidth',2);
-
-x = [[0 0]; [0 dtiAxSz(2)]; [dtiAxSz(3) dtiAxSz(3)]./2; [1 1]];
-x = dwiData.vox2ras * x;
-plot3(x(1,:),x(2,:),x(3,:),'g', 'LineWidth',2);
-
-x = [[dtiAxSz(1) dtiAxSz(1)]; [0 dtiAxSz(2)]; [dtiAxSz(3) dtiAxSz(3)]./2; [1 1]];
-x = dwiData.vox2ras * x;
-plot3(x(1,:),x(2,:),x(3,:),'g', 'LineWidth',2);
-
-% Plot the y-z plane
-x = [[dtiAxSz(1) dtiAxSz(1)]./2;[0 0]; [0 dtiAxSz(3)]; [1 1]];
-x = dwiData.vox2ras * x;
-plot3(x(1,:),x(2,:),x(3,:),'b', 'LineWidth',2);
-
-x = [[dtiAxSz(1) dtiAxSz(1)]./2; [dtiAxSz(2) dtiAxSz(2)]; [0 dtiAxSz(3)]; [1 1]];
-x = dwiData.vox2ras * x;
-plot3(x(1,:),x(2,:),x(3,:),'b', 'LineWidth',2);
-
-x = [[dtiAxSz(1) dtiAxSz(1)]./2; [0 dtiAxSz(2)]; [0 0]; [1 1]];
-x = dwiData.vox2ras * x;
-plot3(x(1,:),x(2,:),x(3,:),'g', 'LineWidth',2);
-
-x = [[dtiAxSz(1) dtiAxSz(1)]./2; [0 dtiAxSz(2)]; [dtiAxSz(3) dtiAxSz(3)]; [1 1]];
-x = dwiData.vox2ras * x;
-plot3(x(1,:),x(2,:),x(3,:),'g', 'LineWidth',2);
-
-% Plot the x-z plane
-x = [[0 0]; [dtiAxSz(2) dtiAxSz(2)]./2; [0 dtiAxSz(3)]; [1 1]];
-x = dwiData.vox2ras * x;
-plot3(x(1,:),x(2,:),x(3,:),'b', 'LineWidth',2);
-
-x = [[dtiAxSz(1) dtiAxSz(1)]; [dtiAxSz(2) dtiAxSz(2)]./2; [0 dtiAxSz(3)]; [1 1]];
-x = dwiData.vox2ras * x;
-plot3(x(1,:),x(2,:),x(3,:),'b', 'LineWidth',2);
-
-x = [[0 dtiAxSz(1)]; [dtiAxSz(2) dtiAxSz(2)]./2; [0 0]; [1 1]];
-x = dwiData.vox2ras * x;
-plot3(x(1,:),x(2,:),x(3,:),'r', 'LineWidth',2);
-
-x = [[0 dtiAxSz(1)]; [dtiAxSz(2) dtiAxSz(2)]./2; [dtiAxSz(3) dtiAxSz(3)]; [1 1]];
-x = dwiData.vox2ras * x;
-plot3(x(1,:),x(2,:),x(3,:),'r', 'LineWidth',2);
-
 %% Plot the diffusion tensors for the path (just to see that all is well)
 % Get tensors for a path
 fignum = figure('XVisual',...
