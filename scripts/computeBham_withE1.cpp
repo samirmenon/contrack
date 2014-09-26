@@ -7,10 +7,18 @@
 const double pi=3.1412;
 
 //NOTE VARIABLE NAMES FOLLOW MATLAB NOTATION...
-/** Assumes that e1 is variable. Also assumes that the D tensor is
-*  identity with diag : (e1,e2,e3). i.e. eigvecs are unit vecs along 
-*  x,y,z (no loss while computing integration constants since those
-*  are unaffected by rotations) */
+/** 
+*  Args:
+*         t = tangent vector
+*  e{1,2,3} = eigenvalues (in decreasing order)
+*         C = Bingham constant of integration (set to 1 to compute surface integral)
+*  Returns:
+*         The Bingham distribution score for the given tangent value
+*  
+*  NOTE:
+*  Assumes that the D tensor is identity with diag : (e1,e2,e3). 
+*  i.e. eigvecs are unit vecs along x,y,z (no loss while computing integration 
+*  constants since the surface area computation is unaffected by rotations) */
 double ctrBhamScore(const double *t /** sz=3*/, const double e1, const double e2, const double e3, const double C)
 {
 	double sigmaM = pi*14/180; // User param. From paper (pg. 7 col. 2, para 1)
@@ -45,8 +53,34 @@ double ctrBhamScore(const double *t /** sz=3*/, const double e1, const double e2
 	return bhamScore;
 }
 
+/** Computes the {partition function, normalizing pdf constant, surface integral}
+  * for the Bingham distribution on a sphere, provided a set of eigenvalues.
+  * Assumes that the diffusion tensor is diagonal.
+  * 
+  * Args:
+  *    e{1,2,3} = Eigenvalues of the diffusion tensor (decreasing order)
+  * dtheta/dphi = The numerical integration steps on a sphere
+  * 
+  *  Note that this sphere surface integrator works quite well with dtheta
+  *  and dphi = 0.002. 
+  *  
+  *  ===========================
+  *  Step  ||  Area(unit-sphere)
+  *  ===========================
+  *  0.5   || 13.7296
+  *  0.1   || 12.6523
+  *  0.05  || 12.6537
+  *  0.01  || 12.6014
+  *  0.005 || 12.5757                                  <== ok for quick results
+  *  0.002 || 12.5706 (substantially slower than .005) <== best quality/speed tradeoff
+  *  0.001 || 12.5654 (substantially slower than .002)
+  *  0.0005|| 12.5628 (REALLY slow)
+  *  0.0001|| You don't want to use this...
+  *
+  *  Correct answer : 4*pi ~= 12.5664
+  *  */
 double ctrFindIntegConstt(const double e1, const double e2, const double e3, 
-	const double dtheta, const double dphi)
+	const double dtheta = 0.002, const double dphi = 0.002)
 {
 	// Unit vector relative to which integration proceeds, we'll muck with it below:
 	double t[3];
@@ -78,11 +112,20 @@ double ctrFindIntegConstt(const double e1, const double e2, const double e3,
 
 const int nthreads=16;
 
+/** The main function that computes the Bingham partition function for a variety
+  * of eigenvector/value instances. Note that this is a modified version of the
+  * commonly used Bingham function (the creators of contrack decided to reformulate it). 
+  * 
+  * You may set the eigenvalue spacing and integration steps.
+  * 
+  * NOTE : Will dump out files that look like:
+  *           bhamConst-e1e2e3C-t[id]-[de]-[dtheta].txt
+  *        where id = thread id, de = eigenvalue step, dtheta = integration step 
+  */
 int main()
 {
 	const double einit = 0.01, de=0.01, dtheta=0.002, dphi=dtheta;
 	
-	double tstart, tcurr; 
 	omp_set_num_threads(nthreads);
 	int thread_id;
 	double e1,e2,e3,dd;
@@ -100,6 +143,8 @@ int main()
 
 		printf("\n I am thread %d. Outfile: %s", thread_id, fname[thread_id].c_str());
 
+		// Run the actual loop over eigenvalues
+		// The extra stuff in e1's iteration is to enable multi-threading..
 		for(e1=einit+ static_cast<double>(thread_id)*de;
 			e1<3	;e1+=nthreads*de){
 			for(e2=einit;e2<e1;e2+=de){
