@@ -29,7 +29,7 @@ if min(size(t) == [1 3]),
     t = t';
 end
 
-sigmaM = pi*14/180; % User param. From paper (pg. 7 col. 2, para 1)
+sigmaM = 0.2443;% == 14 deg..pi*14/180 rad; User param. From paper (pg. 7 col. 2, para 1)
 eta = .175; % User param. From paper (pg. 7 col. 2, para 2)
 
 % D is a cell array, assume that it is {eigvals, eigvecs, trace}:
@@ -45,8 +45,9 @@ d = D{2};
 CL = abs(d(1) - d(2)) / D{3};
 
 % Compute delta = 100deg / (1+ exp( - (eta - CL) / 0.015 ) );
-% SM : Do not move to radians instead of degrees. Original cpp is not
-% implemented with SI units.
+% SM : We will move to radians instead of degrees. Original cpp is not
+% implemented with SI units (???).
+% 100 deg =  pi*100/180 rad = 1.7453 rad
 %
 %  NOTE : Discrepancy wrt. cpp file code:
 % double linshape_ds = uniform_s / (1+exp(-(linearityMidCl-p.fCl)*10/linearityWidthCl));
@@ -54,7 +55,7 @@ CL = abs(d(1) - d(2)) / D{3};
 % However, both codes give similar delta values in the end...
 %
 % Value range : CL=0,delta=100; CL=.1.8,delta=42; CL=0.3,delta=0ish...
-delta = (100) / ( 1 + exp(- (eta - CL) / 0.015) ); % 100 is in degrees
+delta = (1.7453) / ( 1 + exp(- (eta - CL) / 0.015) ); % 100 is in degrees
 
 % Compute the term for eigenvector 3
 sigma3star = d(3) / ( d(2) + d(3) ) * delta;

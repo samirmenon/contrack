@@ -61,18 +61,27 @@ else
   
   % CL: Tensor linearity index = abs(eig1 - eig2) / sum(eigs);
   % Right-2nd para on page 4 of Contrack J'Vision 2008.
-  CL = abs(d(1,1) - d(2,2)) / (d(1,1)+2*d(2,2));
+  % "The linearity index is a measure of anisotropy, and is the positive
+  % difference between the largest two eigenvalues of the diffusion tensor
+  % divided by the sum of its eigenvalues"
+  %    Value range : [0, 1)
+  CL = abs(d(1) - d(2)) / (d(1)+2*d(2));
   
   % Compute delta = 100deg / (1+ exp( - (eta - CL) / 0.015 ) );
-  % SM : Do not move to radians instead of degrees. Original cpp is not
-  % implemented with SI units.
-  % In cpp file:
+  % SM : We will move to radians instead of degrees. Original cpp is not
+  % implemented with SI units (???).
+  % 100 deg =  pi*100/180 rad = 1.7453 rad
+  %
+  %  NOTE : Discrepancy wrt. cpp file code:
   % double linshape_ds = uniform_s / (1+exp(-(linearityMidCl-p.fCl)*10/linearityWidthCl));
   % linearityMidCl = 0.174;  linearityWidthCl = .174 (differs from paper)
-  delta = (100) / ( 1 + exp(- (eta - CL) / 0.015) ); % 100 is in degrees
+  % However, both codes give similar delta values in the end...
+  %
+  % Value range : CL=0,delta=100; CL=.1.8,delta=42; CL=0.3,delta=0ish...
+  delta = (1.7453) / ( 1 + exp(- (eta - CL) / 0.015) ); % 100 is in degrees
   
   % Compute the term for eigenvector 2
-  sigma2star = d(2,2) / ( d(2,2) + d(3,3) ) * delta;
+  sigma2star = d(2) / ( d(2) + d(3) ) * delta;
   sigma2 = sigmaM + sigma2star;
   t2 = v(:,2)'*t; % == cos(tangent to eigvec angle)
   t2 = t2 / sin(sigma2);

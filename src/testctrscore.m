@@ -53,6 +53,7 @@ fg = dtiLoadFiberGroup(fiber_file);
 file_tensor = fullfile(conTrack_dir,'sub100311rd','dti06trilin','bin','tensors.nii.gz');
 dwiData = niftiRead(file_tensor); % Just to get the xform
 
+%% Compute the spatial transforms
 fib2voxXform = inv(dwiData.qto_xyz); % Fibers are in ras
 [dt6, xformToAcpc, mmPerVoxel, fileName, desc, intentName] = dtiLoadTensorsFromNifti(file_tensor);
 
