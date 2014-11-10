@@ -39,11 +39,15 @@ algo_unstable = zeros(n_fibers,1);
 % eta = .175;         % User param. From paper (pg. 7 col. 2, para 2)
 
 % Compute the Watson distribution constants
-CW = 1;     % Normalizing constant. NOTE TODO : Get this from the user.
-sigmaC = 1; % Angular dispersion 
+% NOTE TODO : Remove these; seem useless...
+% CW = 1;     % Normalizing constant. NOTE TODO : Get this from the user.
+% sigmaC = 1; % Angular dispersion 
 lambda = exp(-2); % User length scoring param. From paper (pg. 7 col. 2, para 3)
 loglambda = -2;  % User length scoring param. From paper (pg. 7 col. 2, para 3)
 angleCutoff = 2.26; % radians = 129.488462 degrees
+
+% Get the diffusion tensor eigenvalues and eigenvectors
+[dt6eigVec dt6eigVal] = dtiSplitTensor(dt6);
 
 for f_ctr=1:n_fibers,
   % Algorithm to compute the score :
@@ -56,7 +60,7 @@ for f_ctr=1:n_fibers,
   fgftan = diff(fgfibers{f_ctr}')'; % size = 3xfiber-len - 1
   
   % Get the diffusion tensors along the fiber path
-  tensors = ctrExtractDWITensorsAlongPath(fgf,dt6,fib2voxXform);
+  tensors = ctrExtractDWITensorsAlongPath(fgf,dt6,dt6eigVec,dt6eigVal,fib2voxXform,CBcached);
   
   % Stage 1: Compute p(D|s) = Π_{i=1:n} [ p(Di | ti) ]
   % Di are diffusion tensors at each point along the pathway
@@ -67,8 +71,8 @@ for f_ctr=1:n_fibers,
   for j=1:size(fgftan,2),
     % Compute the score for the tangent
     % NOTE : We use a j+1 addressing because the tangents are diff(points)
-    pdt = ctrBinghamScore(fgftan(:,j), tensors{j+1}.D, CBcached);
-    logpdt = ctrLogBinghamScore(fgftan(:,j), tensors{j+1}.D, CBcached);
+    pdt = ctrBinghamScore(fgftan(:,j), tensors{j+1}.D, tensors{j+1}.C);
+    logpdt = ctrLogBinghamScore(fgftan(:,j), tensors{j+1}.D, tensors{j+1}.C);
     % Multiply the estimates for this point
     pds = pds * pdt;
     logpds = logpds + logpdt;
