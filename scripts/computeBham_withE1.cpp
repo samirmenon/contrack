@@ -126,6 +126,7 @@ const int nthreads=16;
 int main()
 {
 	const double einit = 0.01, de=0.01, dtheta=0.002, dphi=dtheta;
+	const double e_max = 4; /*Max eigenvalue */
 	
 	omp_set_num_threads(nthreads);
 	int thread_id;
@@ -147,7 +148,7 @@ int main()
 		// Run the actual loop over eigenvalues
 		// The extra stuff in e1's iteration is to enable multi-threading..
 		for(e1=einit+ static_cast<double>(thread_id)*de;
-			e1<4	;e1+=nthreads*de){
+			e1<e_max;e1+=nthreads*de){
 			for(e2=einit;e2<e1;e2+=de){
 				for(e3=einit;e3<e2;e3+=de){
 					dd = ctrFindIntegConstt(e1,e2,e3,dtheta,dphi);
