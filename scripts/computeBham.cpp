@@ -12,7 +12,7 @@ const double pi=3.1412;
 *  x,y,z  */
 double ctrBhamScore(const double *t /** sz=3*/, const double e2, const double e3, const double C)
 {
-	double sigmaM = pi*14/180; // User param. From paper (pg. 7 col. 2, para 1)
+	double sigmaM = 0.2443; //==pi*14/180; User param. From paper (pg. 7 col. 2, para 1)
 	double eta = .175; // User param. From paper (pg. 7 col. 2, para 2)
 
 	// CL: Tensor linearity index = abs(eig1 - eig2) / sum(eigs);
@@ -20,12 +20,13 @@ double ctrBhamScore(const double *t /** sz=3*/, const double e2, const double e3
     double CL = fabs(1 - e2) / (1.0+e2+e3);
 	
 	// Compute delta = 100deg / (1+ exp( - (eta - CL) / 0.015 ) );
-	// SM : Do not move to radians instead of degrees. Original cpp is not
+	// SM : Move to radians instead of degrees. Original cpp may not be
 	// implemented with SI units.
+	// 100 deg =  pi*100/180 rad = 1.7453 rad
 	// In cpp file:
 	// double linshape_ds = uniform_s / (1+exp(-(linearityMidCl-p.fCl)*10/linearityWidthCl));
 	// linearityMidCl = 0.174;  linearityWidthCl = .174 (differs from paper)
-	double delta = (100.0) / ( 1.0 + exp(- (eta - CL) / 0.015) ); // 100 is in degrees
+	double delta = (1.7453) / ( 1.0 + exp(- (eta - CL) / 0.015) ); // 100 in degrees
 
 	// Compute the term for eigenvector 3
 	double sigma3star = e3 / ( e2 + e3 ) * delta;
