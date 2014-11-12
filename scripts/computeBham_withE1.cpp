@@ -90,7 +90,10 @@ double ctrFindIntegConstt(const double e1, const double e2, const double e3,
 
 	for(double theta = -pi; theta<pi;theta+=dtheta) //From lower pole to upper pole
 	{
-	    for(double phi = 0; phi<2*pi; phi+=dphi) //Integrate over a disk sliced moving along the pole
+		// NOTE : Ideally this should integrate to 2*pi. However, the distrib is symmetric
+		//        along one axis. So we can just compute it for half the sphere and double
+		//        the total integral value at the end (see return line).
+	    for(double phi = 0; phi<pi; phi+=dphi) //Integrate over a disk sliced moving along the pole
 	    {
 	    	// Direction along which to compute the BHAM score
 	        t[0] = r * cos(theta) * cos(phi); // x
@@ -108,10 +111,14 @@ double ctrFindIntegConstt(const double e1, const double e2, const double e3,
 	        ar = ar + darb;
 	    }
 	}
-	return ar;
+	// Double the area to compensate for the fact that we only integrated
+	// phi from 0 to pi (not 2*pi). Symmetric function on sphere. So double
+	// it and return..
+	return ar * 2;
 }
 
 const int nthreads=16;
+
 
 /** The main function that computes the Bingham partition function for a variety
   * of eigenvector/value instances. Note that this is a modified version of the
@@ -126,7 +133,7 @@ const int nthreads=16;
 int main()
 {
 	const double einit = 0.01, de=0.01, dtheta=0.002, dphi=dtheta;
-	const double e_max = 4; /*Max eigenvalue */
+	const double e_max = 4; // Max eigenvalue
 	
 	omp_set_num_threads(nthreads);
 	int thread_id;
