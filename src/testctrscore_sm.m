@@ -91,3 +91,24 @@ grid on; axis square;
 tmpStructural = dwiData.vol(:,:,:,1,1);
 [scores logscores unstable] = contrack_score(fg, dt6, fib2voxXform,  ...
   tmpStructural.*0 + 1, CBcached, dt6eigVec, dt6eigVal);
+
+%% Plot your scores.. Say 1/10th of them...
+ll = logscores(1:10:end);
+
+fignum = figure('XVisual',...
+  '0x27 (TrueColor, depth 24, RGB mask 0xff0000 0xff00 0x00ff)',...
+  'Color',[1 1 1]);
+
+hist(ll,floor(length(ll)/10));
+xlabel('Log(Contrack Score)');
+ylabel(sprintf('N-Fibers (of %d)', length(ll)));
+box off;
+title('ltLGN\_ltCalcFreesurfer\_9\_20110827T152126\_top5000\_edited.pdb');
+
+figname = sprintf('../scripts/figs/Fig_RD_CtrScore');
+if(2 == exist('plot2svg','file'))
+  plot2svg([figname '.svg']);
+end
+if(2==exist('export_fig','file'))
+  export_fig ([figname '.png'], '-png');
+end
