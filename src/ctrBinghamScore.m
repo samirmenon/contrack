@@ -37,6 +37,7 @@ end
 if ~exist('pAngle','var')
   pAngle = 5 * pi/180;
 end
+
 %Area over which to compute the tangent direction's probability.
 %Area of the curved region = 2*pi*r*h
 h = 1 - cos(pAngle); r = 1;
