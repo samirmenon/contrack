@@ -49,10 +49,16 @@ function [ watScore ] = ctrWatsonScore(t, D, C, thetaSeg, pAngle)
 if ~exist('thetaSeg'), 
   thetaSeg=0; 
 end
+ 
+% If t is a row vector resize it to be a col vector
+if min(size(t) == [1 3]),
+    t = t';
+end
 
 if ~exist('pAngle','var')
   pAngle = 5 * pi/180;
 end
+
 %Area over which to compute the tangent direction's probability.
 %Area of the curved region = 2*pi*r*h
 h = 1 - cos(pAngle); r = 1;
@@ -61,12 +67,7 @@ dar = 2*pi*r*h *2; %The final x2 is to include diametrically opposite sphere are
 % Requires a curve of 90 degrees or less.
 if abs(thetaSeg) > pi/2,
   watScore = 0;
-else  
-  % If t is a row vector resize it to be a col vector
-  if min(size(t) == [1 3]),
-    t = t';
-  end
-  
+else 
   sigmaM = pi*14/180; % User param. From paper (pg. 7 col. 2, para 1)
   eta = .175; % User param. From paper (pg. 7 col. 2, para 2)
   
