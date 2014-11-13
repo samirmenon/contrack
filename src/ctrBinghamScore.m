@@ -1,4 +1,4 @@
-function [ bhamScore ] = ctrBinghamScore(t, D, C)
+function [ bhamScore ] = ctrBinghamScore(t, D, C, pAngle)
 %CTBINGHAMSCORE Computes the Bingham score at a point on a fiber tract
 %  Arguments:
 %   t: The tangent to the path at this point.
@@ -6,6 +6,13 @@ function [ bhamScore ] = ctrBinghamScore(t, D, C)
 %   C: C(σ3, σ2). The normalizing constant that ensures the Bingham
 %      distribution integrates to 1 over the unit sphere at this point.
 %      Cached...
+%             *** NOTE : C == 1/(bham-surface-integral) ***
+% pAngle: The angle (in rad) around the tangent direction to consider while
+%         computing the probability score. 
+%         NOTE : Default = 0.0873 rad (== 5deg)..
+%         To make this clear, the probability that a tangent points along a
+%         specific direction tends to zero. The probability that it points
+%         along a finite zone is more reasonable.
 %
 %  Uses constants:
 %   σm = pi*14/180; % User param. From paper (pg. 7 col. 2, para 1)
@@ -27,7 +34,15 @@ if min(size(t) == [1 3]),
     t = t';
 end
 
-sigmaM = 0.2443;% == 14 deg..pi*14/180 rad; User param. From paper (pg. 7 col. 2, para 1)
+if ~exist('pAngle','var')
+  pAngle = 5 * pi/180;
+end
+%Area over which to compute the tangent direction's probability.
+%Area of the curved region = 2*pi*r*h
+h = 1 - cos(pAngle); r = 1;
+dar = 2*pi*r*h *2; %The final x2 is to include diametrically opposite sphere area..
+
+sigmaM = 0.2443; % == 14 deg..pi*14/180 rad; User param. From paper (pg. 7 col. 2, para 1)
 eta = .175; % User param. From paper (pg. 7 col. 2, para 2)
 
 % D is a cell array, assume that it is {eigvals, eigvecs, trace}:
@@ -53,7 +68,7 @@ CL = abs(d(1) - d(2)) / D{3};
 % However, both codes give similar delta values in the end...
 %
 % Value range : CL=0,delta=100; CL=.1.8,delta=42; CL=0.3,delta=0ish...
-delta = (1.7453) / ( 1 + exp(- (eta - CL) / 0.015) ); % 100 is in degrees
+delta = 1.7453 / ( 1 + exp(- (eta - CL) / 0.015) ); 
 
 % Compute the term for eigenvector 3
 sigma3star = d(3) / ( d(2) + d(3) ) * delta;
@@ -67,6 +82,10 @@ sigma2 = sigmaM + sigma2star;
 t2 = v(:,2)'*t;
 t2 = t2 / sin(sigma2);
 
-bhamScore = C* exp( -(t3*t3) - (t2*t2));
+% Compute the Bingham score (not a probability).
+bhamScore = exp( -(t3*t3) - (t2*t2));
+
+%Convert the score to a probability
+bhamScore = C * bhamScore * dar; 
 
 end
