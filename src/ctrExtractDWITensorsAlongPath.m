@@ -1,4 +1,4 @@
-function [ tensors valid ] = ctrExtractDWITensorsAlongPath(xyzTract,dt6,dt6eigVec, dt6eigVal, fib2voxXform, CBcached)
+function [ tensors valid ] = ctrExtractDWITensorsAlongPath(xyzTract,dt6, fib2voxXform, CBcached, dt6eigVec, dt6eigVal)
 %CTREXTRACTDWITENSORSALONGPATH Extracts the tensors along a set of fiber
 %paths
 %   Extracts diffusion tensors along a set of pathways
@@ -7,22 +7,32 @@ function [ tensors valid ] = ctrExtractDWITensorsAlongPath(xyzTract,dt6,dt6eigVe
 % 
 %     xyzTract : The tract matrix: [[x0 y0 z0]' [x1 y1 z1]'... [xn yn zn]']
 %          dt6 : The diffusion tensors across the brain.
-%    dt6eigVec : The diffusion eigenvectors
-%    dt6eigVal : The diffusion eigenvalues
 % fib2voxXform : The xfrom from tract xyz space to fiber voxel space.
+%     CBcached : The cached Bingham constants.
+%    dt6eigVec : The dt6 eigenvectors. Could be passed in. Else these are 
+%            obtained using [dt6eigVec dt6eigVal] = dtiSplitTensor(dt6);
+%    dt6eigVal : The dt6 eigenvalues. Could be passed in. Else these are 
+%            obtained using [dt6eigVec dt6eigVal] = dtiSplitTensor(dt6);
 % 
 % Outputs :
 % 
-% tensors : A struct array of tensors wrt each fiber point == tensor{i}.D
+% tensors : A struct array of tensors & other info at each fiber point
 % 
 % NOTE : It may be efficient to get the diffusion eigenvectors and values:
-%        using: [dt6eigVec dt6eigVal] = dtiSplitTensor(dt6)
+%        using: [dt6eigVec dt6eigVal] = dtiSplitTensor(dt6) in advance..
 % 
 % HISTORY:
 % 2012.12.05 SM: wrote it.
 
 tensors = [];
 valid = [];
+
+% Get the diffusion tensor eigenvalues and eigenvectors
+if ~exist('dt6eigVec','var') || ~exist('dt6eigVal','var')
+  dt6eigVec =[];
+  dt6eigVal =[];
+  [dt6eigVec dt6eigVal] = dtiSplitTensor(dt6);
+end
 
 % Convert the tract's xyz coordinates (ras?) into voxel coordinates
 fibXYZ = xyzTract;
