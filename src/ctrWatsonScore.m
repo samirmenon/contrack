@@ -1,4 +1,4 @@
-function [ watScore ] = ctrWatsonScore(t, D, C, thetaSeg)
+function [ watScore ] = ctrWatsonScore(t, D, C, thetaSeg, pAngle)
 %CTRWATSONSCORE Computes the Watson score at a point on a fiber tract
 %  Arguments:
 %   t: The tangent to the path at this point.
@@ -6,9 +6,16 @@ function [ watScore ] = ctrWatsonScore(t, D, C, thetaSeg)
 %   C: C(σ3, σ2). The normalizing constant that ensures the Bingham
 %      distribution integrates to 1 over the unit sphere at this point.
 %      Cached...
+%             *** NOTE : C == 1/(bham-surface-integral) ***
 % thetaSeg: (Optional). Returns zero of local segment angle is greater than
 %           90 degs. This is only relevant while scoring (not for computing
 %           the integration constant).
+% pAngle: The angle (in rad) around the tangent direction to consider while
+%         computing the probability score. 
+%         NOTE : Default = 0.0873 rad (== 5deg)..
+%         To make this clear, the probability that a tangent points along a
+%         specific direction tends to zero. The probability that it points
+%         along a finite zone is more reasonable.
 %
 %  Uses constants:
 %   σm = pi*14/180; % User param. From paper (pg. 7 col. 2, para 1)
@@ -42,6 +49,14 @@ function [ watScore ] = ctrWatsonScore(t, D, C, thetaSeg)
 if ~exist('thetaSeg'), 
   thetaSeg=0; 
 end
+
+if ~exist('pAngle','var')
+  pAngle = 5 * pi/180;
+end
+%Area over which to compute the tangent direction's probability.
+%Area of the curved region = 2*pi*r*h
+h = 1 - cos(pAngle); r = 1;
+dar = 2*pi*r*h *2; %The final x2 is to include diametrically opposite sphere area..
 
 % Requires a curve of 90 degrees or less.
 if abs(thetaSeg) > pi/2,
@@ -86,7 +101,9 @@ else
   t2 = v(:,2)'*t; % == cos(tangent to eigvec angle)
   t2 = t2 / sin(sigma2);
   
-  watScore = C* exp( -2*(t2*t2));  
+  %Convert the score to a probability
+  watScore = exp( -2*(t2*t2));  
+  watScore = C * watScore * dar;
 end
 
 end
