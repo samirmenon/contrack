@@ -60,7 +60,7 @@ if ~exist('dt6eigVec','var') || ~exist('dt6eigVal','var')
   [dt6eigVec dt6eigVal] = dtiSplitTensor(dt6);
 end
 
-for f_ctr=1:1000:n_fibers,
+for f_ctr=1:n_fibers,
   % Algorithm to compute the score :
   % Q(s) = p(D|s) p(s)
   %  s = Estimated pathway
