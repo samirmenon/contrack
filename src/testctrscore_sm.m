@@ -9,11 +9,17 @@
 % Author : SM <smenon@stanford.edu>
 % Date   : 2013-02-08
 
+%% Suggest adding vistadata to your path
+%
+ctrData = fullfile(mrvDataRootPath,'conTrack','data','sub100311rd');
+image_dir = fullfile(ctrData,'dti06trilin','bin');
+exist(image_dir,'dir')
+
 % Parameters from the standard run:
 % 
 % Params: 1
 % Image Directory: /home/samir/Code/fmri/contrack.git/data/sub100311rd/dti06trilin/bin/ 
-image_dir = '/home/samir/Code/fmri/contrack.git/data/sub100311rd/dti06trilin/bin/';
+% image_dir = '/home/samir/Code/fmri/contrack.git/data/sub100311rd/dti06trilin/bin/';
 % WM/GM Mask Filename: wmProb.nii.gz
 wmgm_mask = 'wmProb.nii.gz';
 % PDF Filename: pdf.nii.gz
@@ -37,11 +43,18 @@ roi_file = 'ltLGN_ltCalcFreesurfer_9_20110827T152126.nii.gz';
 % clear;
 
 %% Load fibers : Note that these are typically in ras xyz real-world coordinates.
-fiber_file = '/home/samir/Code/fmri/contrack.git/data/sub100311rd/fibers/conTrack/opticRadiation/ltLGN_ltCalcFreesurfer_9_20110827T152126_top5000_edited.pdb';
+fiber_file = ...
+    fullfile(ctrData,'fibers','conTrack','opticRadiation','ltLGN_ltCalcFreesurfer_9_20110827T152126_top5000_edited.pdb');
+exist(fiber_file,'file')
+
+% fiber_file = '/home/samir/Code/fmri/contrack.git/data/sub100311rd/fibers/conTrack/opticRadiation/ltLGN_ltCalcFreesurfer_9_20110827T152126_top5000_edited.pdb';
 fg = dtiLoadFiberGroup(fiber_file);
 
 %% Load the diffusion tensors
-file_tensor = '/home/samir/Code/fmri/contrack.git/data/sub100311rd/dti06trilin/bin/tensors.nii.gz';
+file_tensor = fullfile(ctrData,'dti06trilin','bin','tensors.nii.gz');
+exist(file_tensor,'file')
+
+% file_tensor = '/home/samir/Code/fmri/contrack.git/data/sub100311rd/dti06trilin/bin/tensors.nii.gz';
 dwiData = load_nifti(file_tensor); % Just to get the xform
 fib2voxXform = inv(dwiData.vox2ras); % Fibers are in ras
 [dt6, xformToAcpc, mmPerVoxel, fileName, desc, intentName] = dtiLoadTensorsFromNifti(file_tensor);

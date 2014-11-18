@@ -16,6 +16,15 @@ end
 [d idx] = sort(B(:,1),'ascend');
 Bs = B(idx,:);
 
+%% I think he means add contrack to the path and then do this
+if ~exist('B','var') % Ugh
+    foo = load('bingham');
+    B = foo.bingham;
+    B(:,4) = 1./B(:,4);
+end
+[d idx] = sort(B(:,1),'ascend');
+Bs = B(idx,:);
+
 %% Plot the data to be used by contrack
 tlbl = {'Eigenvalue 1','Eigenvalue 2','Eigenvalue 3','Bham Integral'};
 
@@ -44,6 +53,8 @@ end
 
 
 %% Perfect contrack scenario. Simulated data. No distortion...
+
+% There should be code here that 
 close all;
 eigset = {[1 1 .001], [1 .1 .1], [1 .5 .1], [1 .5 .5], [1 1 .1], [1 1 .5], [1 1 1]};
 for iii = 1:1:length(eigset),
